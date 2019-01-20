@@ -146,6 +146,27 @@ class SyllabeInitiale:
                     #La palatale sourde s'assibile encore
                     elif syllabes[0][0] + syllabes[0][1] == 'GJ':
                         changements.append('i')
+                #Les S suivis d'une consonne ou d'une sonante subissent une prosthèse
+                elif syllabes[0][0] + syllabes[0][1] + syllabes[0][2] in ['STR', 'SCR']:
+                    changements.append('e' + syllabes[0][0] + syllabes[0][1] + syllabes[0][2])
+                elif syllabes[0][0] + syllabes[0][1] in ['SC', 'SL', 'SM', 'SN', 'SP', 'ST']:
+                    if syllabes[0][0] + syllabes[0][1] in ['SN']:
+                        changements.append('i'+syllabes[0][0] + syllabes[0][1])
+                    elif syllabes[0][0] + syllabes[0][1] in ['SL']:
+                        if syllabes[0][-1] + syllabes[1][0] == 'TH':
+                            changements.append('escl')
+                        else:
+                            changements.append('e'+syllabes[0][0] + syllabes[0][1])
+                    elif syllabes[0][0] + syllabes[0][1] in ['SC']:
+                        if syllabes[0][2] == 'Á':
+                            changements.append('e' + syllabes[0][0] + syllabes[0][1]+'h')
+                        else:
+                            changements.append('e' + syllabes[0][0] + syllabes[0][1])
+                    else:
+                        if syllabes[0][-1] == syllabes[-1][-1] == 'G':
+                            changements.append('escl')
+                        else:
+                            changements.append('e'+syllabes[0][0] + syllabes[0][1])
 
             #Si ce n'est pas le cas, il traitera de l'élément consonantique simple
             #Consonantisme explosif
