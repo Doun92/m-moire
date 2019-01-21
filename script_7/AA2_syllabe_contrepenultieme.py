@@ -24,11 +24,17 @@ syllabifier = Syllabifier()
 
 #Listes de toutes les lettres traitées dans le script
 listes_lettres = {
+'toutes_les_voyelles' : ["A", "Á", "E", "Ẹ", "Ę", "I", "Í", "Ī", "O", "Ǫ", "Ọ", "U", "Ú"],
+
 'voyelles_toniques' : ["Ẹ", "Ę", "Á", "Ǫ", "Ọ", "Ú", 'Í'],
 
 'voyelles_atones' : ["A", "E", "U", "I", "O"],
 
 'voyelles_atones_sans_A' : ["E", "U", "I", "O"],
+
+'voyelles_palatales': ['A', 'Á', 'E', "Ẹ", "Ę", 'I', 'Í'],
+
+'voyelles_vélaires' : ['O', "Ǫ", "Ọ", 'U', "Ú",],
 
 'consonnes' : ["T", "P", "S", "D", "F", "G", "C", "B", 'V', 'K', 'Q', 'J', 'X'],
 
@@ -38,14 +44,28 @@ listes_lettres = {
 
 'yod_et_wau' : ["W", "Y"],
 
-'consonantisme_complexe' : ['BI', 'BL', 'BR', 'BU', 'DE', 'DI'],
+'consonantisme_explosif_complexe' : [
+'BR', 'PR', 'VR', 'DR', 'TR', 'CR', 'GR',
+'BL', 'FL', 'PL', 'DL', 'TL', 'CL', 'GL',
+'BW', 'PW', 'VW', 'DW', 'SW', 'TW', 'CW', 'GW', 'QW',
+'BJ', 'FJ', 'PJ', 'VJ', 'DJ', 'SJ', 'TJ', 'CJ', 'GJ',
+],
 
-'suffixes' : ['ÁRIU'],
+'consonantisme_implosif_complexe': [],
 
-'prefixes': []
+'suffixes' : ['ÁRIU', 'DON', 'JAN'],
+
+'prefixes': [],
+
+'désinences_présent': ['BET', 'CET', 'DET', 'NIT', 'TET', 'VET'],
+
+'désinences_futur': ['BO'],
+
+'désinences_passé': ['RUNT'],
+
+'désinences_subjonctif': ['CEM']
 
 }
-
 class SyllabeContrepenultieme:
 
     def __init__(self):
@@ -496,17 +516,17 @@ class SyllabeContrepenultieme:
             if syllabes[-5][-1] == 'Á':
                 if syllabes[-4][0] in listes_lettres['consonnes_nasales']:
                     changements.append('ai')
-                elif syllabes[-5][-2] in ['C'. 'G']:
+                elif syllabes[-5][-2] in ['C', 'G']:
                     changements.append('ie')
                 else:
                     changements.append('e')
             elif syllabes[-5][-2] == 'Á':
-                if syllabes[-5][-3] in ['C'. 'G']:
+                if syllabes[-5][-3] in ['C', 'G']:
                     changements.append('ie')
                 else:
                     changements.append('a')
             elif syllabes[-5][-3] == 'Á':
-                if syllabes[-5][-4] in ['C'. 'G']:
+                if syllabes[-5][-4] in ['C', 'G']:
                     changements.append('ie')
                 else:
                     changements.append('a')

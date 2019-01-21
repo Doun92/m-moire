@@ -48,7 +48,7 @@ listes_lettres = {
 'BR', 'PR', 'VR', 'DR', 'TR', 'CR', 'GR',
 'BL', 'FL', 'PL', 'DL', 'TL', 'CL', 'GL',
 'BW', 'PW', 'VW', 'DW', 'SW', 'TW', 'CW', 'GW', 'QW',
-'BJ', 'FJ', 'PJ', 'VJ', 'DJ', 'SJ', 'TJ', 'CJ', 'GJ',
+'BJ', 'FJ', 'PJ', 'VJ', 'DJ', 'SJ', 'TJ', 'CJ', 'GJ', 'RJ'
 ],
 
 'consonantisme_implosif_complexe': [],
@@ -165,6 +165,8 @@ class SyllabePenultieme:
                     #La palatale sourde s'assibile encore
                     elif syllabes[-2][0] + syllabes[-2][1] == 'GJ':
                         changements.append('i')
+                elif syllabes[-2][0] + syllabes[-2][1] == 'RJ':
+                    changements.append(syllabes[-2][0])
 
             #Si ce n'est pas le cas, il traitera de l'élément consonantique simple
             #Consonantisme explosif
@@ -262,6 +264,8 @@ class SyllabePenultieme:
                                     changements.append('')
                         elif syllabes[-2][1] in ['O', "Ǫ", "Ọ", 'U', "Ú",]:
                             changements.append('')
+                    else:
+                        changements.append('g')
 
                 #Gestion de J
                 elif syllabes[-2][0] == 'J':
@@ -475,7 +479,13 @@ class SyllabePenultieme:
         #Gestion de E
         if 'E' in syllabes[-2]:
             if syllabes[-2][-1] == 'E':
-                changements.append('')
+                if syllabes[-2][-2] == syllabes[-2][0] == 'G':
+                    if syllabes[-3][-1] == 'N':
+                        changements.append('e')
+                    else:
+                        pass
+                else:
+                    changements.append('')
             elif syllabes[-2][-2] == 'E':
                 changements.append('')
             elif syllabes[-2][-3] == 'E':
@@ -517,17 +527,17 @@ class SyllabePenultieme:
             if syllabes[-2][-1] == 'Á':
                 if syllabes[-1][0] in listes_lettres['consonnes_nasales']:
                     changements.append('ai')
-                elif syllabes[-2][-2] in ['C'. 'G']:
+                elif syllabes[-2][-2] in ['C', 'G']:
                     changements.append('ie')
                 else:
                     changements.append('e')
             elif syllabes[-2][-2] == 'Á':
-                if syllabes[-2][-3] in ['C'. 'G']:
+                if syllabes[-2][-3] in ['C', 'G']:
                     changements.append('ie')
                 else:
                     changements.append('a')
             elif syllabes[-2][-3] == 'Á':
-                if syllabes[-2][-4] in ['C'. 'G']:
+                if syllabes[-2][-4] in ['C', 'G']:
                     changements.append('ie')
                 else:
                     changements.append('a')
@@ -656,88 +666,91 @@ class SyllabePenultieme:
                 changements.append('u')
 
         #Idem ici, la machine doit d'abord vérifier la longueur de la syllabe pour savoir si elle est uniquement composée d'une voyelle ou d'autre chose.
-        if len(syllabes[-4]) == 1:
+        if len(syllabes[-2]) == 1:
             pass
-        elif syllabes[-4] in listes_lettres['désinences_subjonctif']:
+        elif syllabes[-2] in listes_lettres['désinences_subjonctif']:
             pass
         else:
             #D'abord l'algorithme vérifie s'il à affaire avec un élément consonantique complexe
             #Consonantisme explosif complexe
-            if syllabes[-4][-2] + syllabes[-4][-1] in listes_lettres['consonantisme_implosif_complexe']:
+            if syllabes[-2][-2] + syllabes[-2][-1] in listes_lettres['consonantisme_implosif_complexe']:
                 pass
 
             #Si ce n'est pas le cas, il traitera de l'élément consonantique simple
             #Consonantisme implosif
-            elif syllabes[-4][-1] in listes_lettres['consonnes']:
+            elif syllabes[-2][-1] in listes_lettres['consonnes']:
                 pass
                 #Gestion de B
-                if syllabes[-4][-1] == 'B':
+                if syllabes[-2][-1] == 'B':
                     #S'assimile à la consonne suivante
                     changements.append('')
                 #Gestion de C
-                elif syllabes[-4][-1] == 'C':
+                elif syllabes[-2][-1] == 'C':
                     #spirantisation
                     changements.append('i')
                 #Gestion de D
-                elif syllabes[-4][-1] == 'D':
+                elif syllabes[-2][-1] == 'D':
                     #S'assimile à la consonne suivante
                     changements.append('')
                 #Gestion  de F
-                elif syllabes[-4][-1] == 'F':
+                elif syllabes[-2][-1] == 'F':
                     changements.append('')
                 #Gestion  de G
-                elif syllabes[-4][-1] == 'G':
+                elif syllabes[-2][-1] == 'G':
                     #Après I et E
-                    if syllabes[-4][-2] in ["Ẹ", "Ę", 'E', 'I', 'Í']:
+                    if syllabes[-2][-2] in ["Ẹ", "Ę", 'E', 'I', 'Í']:
                         changements.append('i')
                     else:
                         changements.append('u')
                 #Gestion de J
-                elif syllabes[-4][-1] == 'J':
+                elif syllabes[-2][-1] == 'J':
                     pass
                 #Gestion de K
-                elif syllabes[-4][-1] == 'K':
+                elif syllabes[-2][-1] == 'K':
                     pass
                 #Gestion de P
-                elif syllabes[-4][-1] == 'P':
+                elif syllabes[-2][-1] == 'P':
                     #S'assimile à la consonne suivante
                     changements.append('')
                 #Gestion de Q
-                elif syllabes[-4][-1] == 'Q':
+                elif syllabes[-2][-1] == 'Q':
                     pass
                 #Gestion de S
-                elif syllabes[-4][-1] == 'S':
-                    changements.append(syllabes[-4][-1])
+                elif syllabes[-2][-1] == 'S':
+                    changements.append(syllabes[-2][-1])
                 #Gestion de T
-                elif syllabes[-4][-1] == 'T':
+                elif syllabes[-2][-1] == 'T':
                     #S'assimile à la consonne suivante
                     changements.append('')
                 #Gestion de V
-                elif syllabes[-4][-1] == 'V':
+                elif syllabes[-2][-1] == 'V':
                     #S'assimile à la consonne suivante
                     changements.append('')
                 #Gestion de X
-                elif syllabes[-4][-1] == 'X':
+                elif syllabes[-2][-1] == 'X':
                     pass
 
-            elif syllabes[-4][-1] in listes_lettres['consonnes_liquides']:
+            elif syllabes[-2][-1] in listes_lettres['consonnes_liquides']:
                 pass
                 #Gestion  de L
-                if syllabes[-4][-1] == 'L':
+                if syllabes[-2][-1] == 'L':
+                    if syllabes[-1][0] == 'L':
+                        changements.append('')
+                    else:
                     #Vocalisation en W
-                    changements.append('u')
+                        changements.append('u')
                 #Gestion de R
-                elif syllabes[-4][-1] == 'R':
-                    changements.append(syllabes[-4][-1])
+                elif syllabes[-2][-1] == 'R':
+                    changements.append(syllabes[-2][-1])
 
-            elif syllabes[-4][-1] in listes_lettres['consonnes_nasales']:
+            elif syllabes[-2][-1] in listes_lettres['consonnes_nasales']:
                 pass
                 #Gestion  de M
-                if syllabes[-4][-1] == 'M':
-                    changements.append(syllabes[-4][-1])
+                if syllabes[-2][-1] == 'M':
+                    changements.append(syllabes[-2][-1])
                 #Gestion de N
-                elif syllabes[-4][-1] == 'N':
-                    changements.append(syllabes[-4][-1])
+                elif syllabes[-2][-1] == 'N':
+                    changements.append(syllabes[-2][-1])
 
                 #Gestion de H
 
