@@ -201,6 +201,8 @@ class SyllabeFinale:
                                     changements.append('f')
                                 else:
                                     changements.append('v')
+                    else:
+                        changements.append(syllabes[-1][0])
 
                 #Gestion de C
                 elif syllabes[-1][0] == 'C':
@@ -233,6 +235,8 @@ class SyllabeFinale:
                             changements.append('')
                         elif syllabes[-1][1] == 'T':
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-1][0])
 
                 #Gestion  de F
                 elif syllabes[-1][0] == 'F':
@@ -241,6 +245,8 @@ class SyllabeFinale:
                             changements.append('v')
                         elif syllabes[-1][1] in listes_lettres['voyelles_vélaires']:
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-1][0])
 
                 #Gestion  de G
                 elif syllabes[-1][0] == 'G':
@@ -263,6 +269,8 @@ class SyllabeFinale:
                                     changements.append('')
                         elif syllabes[-1][1] in ['O', "Ǫ", "Ọ", 'U', "Ú",]:
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-1][0])
 
                 #Gestion de J
                 elif syllabes[-1][0] == 'J':
@@ -299,6 +307,8 @@ class SyllabeFinale:
                                     changements.append('f')
                                 else:
                                     changements.append('v')
+                    else:
+                        changements.append(syllabes[-1][0])
 
                 #Gestion de Q
                 elif syllabes[-1][0] == 'Q':
@@ -308,6 +318,8 @@ class SyllabeFinale:
                 elif syllabes[-1][0] == 'S':
                     if syllabes[-2][-1] in listes_lettres['toutes_les_voyelles']:
                         changements.append('s')
+                    else:
+                        changements.append(syllabes[-1][0])
 
                 #Gestion de T
                 elif syllabes[-1][0] == 'T':
@@ -316,6 +328,8 @@ class SyllabeFinale:
                             changements.append('')
                         elif syllabes[-1][1] == 'T':
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-1][0])
 
                 #Gestion de V
                 elif syllabes[-1][0] == 'V':

@@ -197,6 +197,8 @@ class SyllabeContrefinale:
                                     changements.append('f')
                                 else:
                                     changements.append('v')
+                    else:
+                        changements.append(syllabes[-4][0])
 
                 #Gestion de C
                 elif syllabes[-4][0] == 'C':
@@ -232,6 +234,8 @@ class SyllabeContrefinale:
                                 changements.append('')
                         elif syllabes[-4][1] == 'T':
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-4][0])
 
                 #Gestion  de F
                 elif syllabes[-4][0] == 'F':
@@ -240,6 +244,8 @@ class SyllabeContrefinale:
                             changements.append('v')
                         elif syllabes[-4][1] in listes_lettres['voyelles_vélaires']:
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-4][0])
 
                 #Gestion  de G
                 elif syllabes[-4][0] == 'G':
@@ -262,6 +268,8 @@ class SyllabeContrefinale:
                                     changements.append('')
                         elif syllabes[-4][1] in ['O', "Ǫ", "Ọ", 'U', "Ú",]:
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-4][0])
 
                 #Gestion de J
                 elif syllabes[-4][0] == 'J':
@@ -298,6 +306,8 @@ class SyllabeContrefinale:
                                     changements.append('f')
                                 else:
                                     changements.append('v')
+                    else:
+                        changements.append(syllabes[-4][0])
 
                 #Gestion de Q
                 elif syllabes[-4][0] == 'Q':
@@ -318,6 +328,8 @@ class SyllabeContrefinale:
                                 changements.append('')
                         elif syllabes[-4][1] == 'T':
                             changements.append('')
+                    else:
+                        changements.append(syllabes[-4][0])
 
                 #Gestion de V
                 elif syllabes[-4][0] == 'V':
@@ -350,7 +362,7 @@ class SyllabeContrefinale:
                         else:
                             changements.append(syllabes[-4][0])
                     #Épenthèse d'un d après N
-                    if syllabes[-5][-1] == 'N':
+                    elif syllabes[-5][-1] == 'N':
                         changements.append('d'+syllabes[-4][0])
                     elif syllabes[-5][-2] == "N":
                         if syllabes[-5][-1] in listes_lettres['voyelles_atones_sans_A']:
@@ -358,7 +370,7 @@ class SyllabeContrefinale:
                         else:
                             changements.append(syllabes[-4][0])
                     #Épenthèse d'un d après L
-                    if syllabes[-5][-1] == 'L':
+                    elif syllabes[-5][-1] == 'L':
                         changements.append('d'+syllabes[-4][0])
                     elif syllabes[-5][-2] == "L":
                         if syllabes[-5][-1] in listes_lettres['voyelles_atones_sans_A']:
@@ -366,7 +378,7 @@ class SyllabeContrefinale:
                         else:
                             changements.append(syllabes[-4][0])
                     #Épenthèse d'un d après S sonore
-                    if syllabes[-5][-1] == 'S':
+                    elif syllabes[-5][-1] == 'S':
                         #Épenthèse d'un t après S sourde
                         if syllabes[-5][-2] == 'S':
                             changements.append('t')
@@ -383,6 +395,8 @@ class SyllabeContrefinale:
                             changements.append('t' + syllabes[-4][0])
                         else:
                             changements.append(syllabes[-4][0])
+                    else:
+                        changements.append(syllabes[-4][0])
 
                 #Gestion de R
                 elif syllabes[-4][0] == 'R':
@@ -395,7 +409,7 @@ class SyllabeContrefinale:
                         else:
                             changements.append(syllabes[-4][0])
                     #Épenthèse d'un d après N
-                    if syllabes[-5][-1] == 'N':
+                    elif syllabes[-5][-1] == 'N':
                         changements.append('d'+syllabes[-4][0])
                     elif syllabes[-5][-2] == "N":
                         if syllabes[-5][-1] in listes_lettres['voyelles_atones_sans_A']:
@@ -403,7 +417,7 @@ class SyllabeContrefinale:
                         else:
                             changements.append(syllabes[-4][0])
                     #Épenthèse d'un d après L
-                    if syllabes[-5][-1] == 'L':
+                    elif syllabes[-5][-1] == 'L':
                         changements.append('d'+syllabes[-4][0])
                     elif syllabes[-5][-2] == "L":
                         if syllabes[-5][-1] in listes_lettres['voyelles_atones_sans_A']:
@@ -411,7 +425,7 @@ class SyllabeContrefinale:
                         else:
                             changements.append(syllabes[-4][0])
                     #Épenthèse d'un d après S sonore
-                    if syllabes[-5][-1] == 'S':
+                    elif syllabes[-5][-1] == 'S':
                         #Épenthèse d'un t après S sourde
                         if syllabes[-5][-2] == 'S':
                             changements.append('t')
@@ -428,6 +442,8 @@ class SyllabeContrefinale:
                             changements.append('t' + syllabes[-4][0])
                         else:
                             changements.append(syllabes[-4][0])
+                    else:
+                        changements.append(syllabes[-4][0])
 
             elif syllabes[-4][0] in listes_lettres['consonnes_nasales']:
                 #Gestion  de M

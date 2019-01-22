@@ -430,7 +430,7 @@ class SyllabeInitiale:
                 if syllabes[1][0] in listes_lettres['consonnes_nasales']:
                     changements.append('o')
                 #Au contact d'un I long final
-                if syllabes[1][0] == 'Ī':
+                elif syllabes[1][0] == 'Ī':
                     changements.append('u')
                 #Influence d'un I long final (Ī)
                 elif syllabes[-1][-1] == 'Ī':
@@ -439,7 +439,7 @@ class SyllabeInitiale:
                 elif syllabes[1] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
                     changements.append('u')
                 #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                if syllabes[0][-1] + syllabes[1][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                elif syllabes[0][-1] + syllabes[1][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
                     changements.append('u')
                 else:
                     changements.append('ou')
@@ -500,7 +500,6 @@ class SyllabeInitiale:
             #Si ce n'est pas le cas, il traitera de l'élément consonantique simple
             #Consonantisme implosif
             elif syllabes[0][-1] in listes_lettres['consonnes']:
-                pass
                 #Gestion de B
                 if syllabes[0][-1] == 'B':
                     #S'assimile à la consonne suivante
@@ -530,6 +529,8 @@ class SyllabeInitiale:
                 elif syllabes[0][-1] == 'K':
                     if syllabes[0][-1] == syllabes[-1][-1]:
                         changements.append('c')
+                    else:
+                        changements.append('')
                 #Gestion de P
                 elif syllabes[0][-1] == 'P':
                     #S'assimile à la consonne suivante
