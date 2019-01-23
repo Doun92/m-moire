@@ -328,6 +328,8 @@ class SyllabeFinale:
                             changements.append('')
                         elif syllabes[-1][1] == 'T':
                             changements.append('')
+                        else:
+                            changements.append(syllabes[-1][0])
                     else:
                         changements.append(syllabes[-1][0])
 
