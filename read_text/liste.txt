@@ -1,415 +1,415 @@
- a 16 
- abates 1 
- abaton 1 
- acomplit 1 
- adonc 5 
- adonclor 1 
- affrica 1 
- ai 1 
- aies 1 
- aille 1 
- ait 1 
- al 4 
- allet 1 
- als 1 
- amen 1 
- aministrave 1 
- an 1 
- anz 3 
- aoras 1 
- aoravont 2 
- aoront 1 
- apelle 2 
- apelloit 1 
- apostre 7 
- apostres 18 
- apres 3 
- archevesque 1 
- as 1 
- ascension 1 
- asia 1 
- autra 1 
- avenemenz 1 
- avint 1 
- avit 3 
- avoit 2 
- bapteier 1 
- beneficiosper 1 
- betsayda 1 
- brisiez 1 
- cel 5 
- celebre 4 
- cella 3 
- cels 2 
- ces 1 
- cest 3 
- cesta 2 
- cestes 2 
- cetes 1 
- ceux 1 
- ceuz 3 
- chacez 1 
- chapellans 1 
- chosa 1 
- choses 2 
- ci 1 
- cil 3 
- cist 1 
- cite 4 
- citez 2 
- clerz 1 
- co 4 
- coitousement 1 
- columpna 1 
- comancetalar 1 
- comando 1 
- come 1 
- comenceront 1 
- coment 8 
- conseil 1 
- continualment 1 
- continuament 1 
- cors 1 
- costreigniont 1 
- creeront 1 
- creiont 1 
- creise 1 
- crier 1 
- crist 19 
- croiels 1 
- crois 3 
- crucifieront 1 
- cuers 1 
- cui 1 
- cuisavont 1 
- d 3 
- davant 2 
- de 34 
- del 9 
- dels 1 
- demora 2 
- desabionates 1 
- desert 1 
- desos 1 
- destro 1 
- deu 4 
- deus 1 
- deust 1 
- deux 6 
- devers 2 
- di 1 
- diaquenos 1 
- diaquenz 1 
- disiont 1 
- disoit 1 
- dist 2 
- dit 3 
- doctrina 1 
- does 2 
- domentres 3 
- done 1 
- dont 1 
- douci 1 
- doze 3 
- dracons 1 
- dragon 3 
- dragons 2 
- eago 1 
- edifier 1 
- egleises 1 
- eglise 1 
- el 14 
- els 1 
- en 19 
- enflame 1 
- enforcere 1 
- enseigna 1 
- enseignie 2 
- enseiguave 1 
- epipodio 1 
- ere 8 
- eront 6 
- esperit 2 
- est 4 
- estar 1 
- esteint 1 
- estez 1 
- estranges 1 
- et 62 
- etenious 1 
- euvangile 1 
- evesquo 3 
- evesquos 1 
- faces 1 
- faisoient 1 
- fait 2 
- farem 1 
- fei 2 
- felipe 1 
- fenna 2 
- ferit 1 
- fermament 1 
- fers 1 
- festa 4 
- fichies 1 
- fil 3 
- filles 2 
- fils 1 
- firont 1 
- fit 5 
- fors 1 
- frere 1 
- frige 1 
- fu 5 
- fue 2 
- fues 1 
- furent 1 
- furont 2 
- fust 1 
- fuveus 1 
- gaaignet 1 
- gai 1 
- galeis 1 
- genz 4 
- gloiri 1 
- gloriosa 1 
- grant 3 
- granz 2 
- habitont 1 
- henemies 1 
- heresi 1 
- hom 2 
- homen 1 
- homenz 1 
- honors 1 
- i 4 
- ices 2 
- icestes 1 
- il 14 
- illi 1 
- illor 1 
- iqui 4 
- irie 1 
- issi 1 
- jaquemo 1 
- jerapolim 1 
- jesu 19 
- jo 2 
- jor 5 
- jorz 2 
- justa 2 
- justea 1 
- l 21 
- la 26 
- lapideront 1 
- lei 1 
- lengagos 1 
- les 7 
- li 24 
- lia 1 
- lians 1 
- lo 9 
- lor 10 
- los 6 
- lue 3 
- lui 1 
- lumeri 1 
- lvii 1 
- m 1 
- maint 1 
- maintes 1 
- mais 1 
- mal 1 
- malado 2 
- maligna 1 
- mals 1 
- maneri 1 
- maria 1 
- mart 2 
- martis 3 
- mauz 1 
- meiller 1 
- meima 1 
- meimo 1 
- meismo 4 
- mellier 1 
- memoiri 1 
- menave 1 
- menez 1 
- mer 1 
- mes 10 
- mester 1 
- ministrave 1 
- mon 8 
- monseignor 1 
- mont 1 
- mort 3 
- mos 1 
- mot 1 
- mout 1 
- moutia 1 
- nas 2 
- ne 5 
- negun 1 
- neguna 1 
- nez 1 
- ni 1 
- no 2 
- nom 2 
- non 4 
- nos 2 
- nostre 2 
- nostres 1 
- nostron 5 
- nuisables 1 
- ocirre 1 
- omenz 1 
- onques 1 
- ordenar 1 
- ordenet 1 
- ot 3 
- ou 1 
- outreie 1 
- paiens 1 
- paro 1 
- passion 1 
- pecheors 1 
- penetenci 1 
- per 6 
- perie 1 
- perseguiont 1 
- phelipes 8 
- phelipo 4 
- phelipos 3 
- philipo 1 
- plus 1 
- pobles 1 
- poers 1 
- poiet 1 
- port 1 
- posa 1 
- predicave 2 
- prediquet 1 
- preieri 1 
- pres 1 
- preveros 2 
- pris 1 
- pristrent 1 
- promeis 1 
- promet 1 
- provinci 1 
- provincide 1 
- provoz 3 
- puis 1 
- qu 3 
- quant 3 
- quauz 1 
- que 23 
- quei 1 
- queil 1 
- qui 24 
- quicai 1 
- quieront 1 
- quoi 1 
- recovrarem 1 
- recovrereis 1 
- region 1 
- regne 1 
- regno 1 
- rehembre 1 
- reins 2 
- rendet 1 
- respondit 1 
- resucitet 1 
- resurreccion 1 
- resurrexit 1 
- revelacion 1 
- s 2 
- sacrifice 1 
- sacrificio 1 
- sacrifie 1 
- sailles 1 
- saillit 2 
- saint 12 
- saintes 2 
- sainz 16 
- salveor 1 
- sanita 3 
- saver 1 
- savoir 1 
- scienci 2 
- se 3 
- seglo 1 
- segloet 1 
- seglos 2 
- seigner 2 
- seignor 11 
- seignoroet 1 
- seimet 1 
- senestro 1 
- sera 1 
- serant 1 
- sergant 1 
- sers 1 
- ses 2 
- set 1 
- sevelies 1 
- sevelis 2 
- si 1 
- sire 4 
- sires 8 
- sit 1 
- socorru 1 
- sofert 1 
- soflament 1 
- soi 3 
- sont 2 
- sos 2 
- soz 1 
- sunt 1 
- sus 1 
- suscita 1 
- taisesant 1 
- tal 1 
- tant 5 
- tantost 1 
- tasia 1 
- te 1 
- tenebres 1 
- teniont 1 
- terz 1 
- tornet 1 
- tot 1 
- totez 1 
- toz 4 
- trameis 1 
- tramist 1 
- trapaseront 1 
- trapassar 1 
- tu 2 
- tua 2 
- tuit 1 
- um 7 
- una 1 
- une 1 
- unes 2 
- uns 2 
- vai 2 
- vanes 1 
- veient 1 
- venira 1 
- venit 1 
- verais 2 
- vertus 1 
- via 1 
- vigne 1 
- vigorosement 1 
- vii 1 
- virgina 2 
- virgines 3 
- vos 1 
- xxx 1 
- ydola 4 
- ydoles 4 
- yerapolin 1 
- ymagena 1 
+a 
+abates 
+abaton 
+acomplit 
+adonc 
+adonclor 
+affrica 
+ai 
+aies 
+aille 
+ait 
+al 
+allet 
+als 
+amen 
+aministrave 
+an 
+anz 
+aoras 
+aoravont 
+aoront 
+apelle 
+apelloit 
+apostre 
+apostres 
+apres 
+archevesque 
+as 
+ascension 
+asia 
+autra 
+avenemenz 
+avint 
+avit 
+avoit 
+bapteier 
+beneficiosper 
+betsayda 
+brisiez 
+cel 
+celebre 
+cella 
+cels 
+ces 
+cest 
+cesta 
+cestes 
+cetes 
+ceux 
+ceuz 
+chacez 
+chapellans 
+chosa 
+choses 
+ci 
+cil 
+cist 
+cite 
+citez 
+clerz 
+co 
+coitousement 
+columpna 
+comancetalar 
+comando 
+come 
+comenceront 
+coment 
+conseil 
+continualment 
+continuament 
+cors 
+costreigniont 
+creeront 
+creiont 
+creise 
+crier 
+crist 
+croiels 
+crois 
+crucifieront 
+cuers 
+cui 
+cuisavont 
+d 
+davant 
+de 
+del 
+dels 
+demora 
+desabionates 
+desert 
+desos 
+destro 
+deu 
+deus 
+deust 
+deux 
+devers 
+di 
+diaquenos 
+diaquenz 
+disiont 
+disoit 
+dist 
+dit 
+doctrina 
+does 
+domentres 
+done 
+dont 
+douci 
+doze 
+dracons 
+dragon 
+dragons 
+eago 
+edifier 
+egleises 
+eglise 
+el 
+els 
+en 
+enflame 
+enforcere 
+enseigna 
+enseignie 
+enseiguave 
+epipodio 
+ere 
+eront 
+esperit 
+est 
+estar 
+esteint 
+estez 
+estranges 
+et 
+etenious 
+euvangile 
+evesquo 
+evesquos 
+faces 
+faisoient 
+fait 
+farem 
+fei 
+felipe 
+fenna 
+ferit 
+fermament 
+fers 
+festa 
+fichies 
+fil 
+filles 
+fils 
+firont 
+fit 
+fors 
+frere 
+frige 
+fu 
+fue 
+fues 
+furent 
+furont 
+fust 
+fuveus 
+gaaignet 
+gai 
+galeis 
+genz 
+gloiri 
+gloriosa 
+grant 
+granz 
+habitont 
+henemies 
+heresi 
+hom 
+homen 
+homenz 
+honors 
+i 
+ices 
+icestes 
+il 
+illi 
+illor 
+iqui 
+irie 
+issi 
+jaquemo 
+jerapolim 
+jesu 
+jo 
+jor 
+jorz 
+justa 
+justea 
+l 
+la 
+lapideront 
+lei 
+lengagos 
+les 
+li 
+lia 
+lians 
+lo 
+lor 
+los 
+lue 
+lui 
+lumeri 
+lvii 
+m 
+maint 
+maintes 
+mais 
+mal 
+malado 
+maligna 
+mals 
+maneri 
+maria 
+mart 
+martis 
+mauz 
+meiller 
+meima 
+meimo 
+meismo 
+mellier 
+memoiri 
+menave 
+menez 
+mer 
+mes 
+mester 
+ministrave 
+mon 
+monseignor 
+mont 
+mort 
+mos 
+mot 
+mout 
+moutia 
+nas 
+ne 
+negun 
+neguna 
+nez 
+ni 
+no 
+nom 
+non 
+nos 
+nostre 
+nostres 
+nostron 
+nuisables 
+ocirre 
+omenz 
+onques 
+ordenar 
+ordenet 
+ot 
+ou 
+outreie 
+paiens 
+paro 
+passion 
+pecheors 
+penetenci 
+per 
+perie 
+perseguiont 
+phelipes 
+phelipo 
+phelipos 
+philipo 
+plus 
+pobles 
+poers 
+poiet 
+port 
+posa 
+predicave 
+prediquet 
+preieri 
+pres 
+preveros 
+pris 
+pristrent 
+promeis 
+promet 
+provinci 
+provincide 
+provoz 
+puis 
+qu 
+quant 
+quauz 
+que 
+quei 
+queil 
+qui 
+quicai 
+quieront 
+quoi 
+recovrarem 
+recovrereis 
+region 
+regne 
+regno 
+rehembre 
+reins 
+rendet 
+respondit 
+resucitet 
+resurreccion 
+resurrexit 
+revelacion 
+s 
+sacrifice 
+sacrificio 
+sacrifie 
+sailles 
+saillit 
+saint 
+saintes 
+sainz 
+salveor 
+sanita 
+saver 
+savoir 
+scienci 
+se 
+seglo 
+segloet 
+seglos 
+seigner 
+seignor 
+seignoroet 
+seimet 
+senestro 
+sera 
+serant 
+sergant 
+sers 
+ses 
+set 
+sevelies 
+sevelis 
+si 
+sire 
+sires 
+sit 
+socorru 
+sofert 
+soflament 
+soi 
+sont 
+sos 
+soz 
+sunt 
+sus 
+suscita 
+taisesant 
+tal 
+tant 
+tantost 
+tasia 
+te 
+tenebres 
+teniont 
+terz 
+tornet 
+tot 
+totez 
+toz 
+trameis 
+tramist 
+trapaseront 
+trapassar 
+tu 
+tua 
+tuit 
+um 
+una 
+une 
+unes 
+uns 
+vai 
+vanes 
+veient 
+venira 
+venit 
+verais 
+vertus 
+via 
+vigne 
+vigorosement 
+vii 
+virgina 
+virgines 
+vos 
+xxx 
+ydola 
+ydoles 
+yerapolin 
+ymagena 

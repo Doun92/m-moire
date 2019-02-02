@@ -17,8 +17,8 @@ def read_file():
             for line in file:
                 # print(line)
 
-                for char in "-.,_\n\t":
-                    line = line.replace(char, '')
+                for char in ":;-.,_\n\t":
+                    line = line.replace(char, ' ')
                     line = line.lower()
 
                 for char in "'":

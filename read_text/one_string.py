@@ -19,7 +19,7 @@ def read_one_string_file():
                 for word, count in sorted(word_counts.items()):
                     # print('"%s" is repeated %d time%s.' % (word, count, "s" if count > 1 else ""))
 
-                    liste.write(' %s %d \n' % (word, count))
+                    liste.write('%s \n' % (word))
 
     except IOError:
         print("Couldn't open file.")
