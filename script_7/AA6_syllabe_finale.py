@@ -522,6 +522,8 @@ class SyllabeFinale:
                 if len(syllabes[-1]) > 1:
                     if syllabes[-1][0] + syllabes[-1][1] in listes_lettres['consonantisme_explosif_complexe']:
                         changements.append(syllabes[-1][-1])
+                    elif syllabes[-2][-1] + syllabes[-1][0] == 'MT':
+                        changements.append(syllabes[-1][-1])
                     else:
                         changements.append('')
                 else:
