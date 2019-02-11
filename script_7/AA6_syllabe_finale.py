@@ -356,54 +356,69 @@ class SyllabeFinale:
             elif syllabes[-1][0] in listes_lettres['consonnes_liquides']:
                 #Gestion  de L
                 if syllabes[-1][0] == 'L':
-                    #Épenthèse d'un b après M
-                    if syllabes[-2][-1] == 'M':
-                        changements.append('b'+syllabes[-1][0])
-                    elif syllabes[-2][-2] == "M":
-                        if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
-                            changements.append('b' + syllabes[-1][0])
-                        else:
-                            changements.append(syllabes[-1][0])
-                    #Épenthèse d'un d après N
-                    elif syllabes[-2][-1] == 'N':
-                        changements.append('d'+syllabes[-1][0])
-                    elif syllabes[-2][-2] == "N":
-                        if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
-                            changements.append('d' + syllabes[-1][0])
-                        else:
-                            changements.append(syllabes[-1][0])
-                    #Épenthèse d'un d après L
-                    # elif syllabes[-2][-1] == 'L':
-                    #     changements.append('d'+syllabes[-1][0])
-                    # elif syllabes[-2][-2] == "L":
-                    #     if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
-                    #         changements.append('d' + syllabes[-1][0])
-                    #     else:
-                    #         changements.append(syllabes[-1][0])
-                    #Épenthèse d'un d après S sonore
-                    elif syllabes[-2][-1] == 'S':
-                        #Épenthèse d'un t après S sourde
-                        if syllabes[-2][-2] == 'S':
-                            changements.append('t')
-                        else:
+                    #Épenthèses avec une syllabe antérieure à une lettre
+                    if len(syllabes[-2]) == 1:
+                        #Épenthèse d'un b après M
+                        if syllabes[-2][-1] == 'M':
+                            changements.append('b'+syllabes[-1][0])
+                        #Épenthèse d'un d après N
+                        elif syllabes[-2][-1] == 'N':
                             changements.append('d'+syllabes[-1][0])
-                    elif syllabes[-2][-1] == 'Ę':
-                        changements.append(syllabes[-1][0])
-                    elif syllabes[-2][-2] == "S":
-                        if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
-                            changements.append('d' + syllabes[-1][0])
-                        else:
-                            changements.append(syllabes[-1][0])
-                    #Épenthèse d'un t après S sourde
-                    elif syllabes[-2][-2] == "X":
-                        if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
-                            changements.append('t' + syllabes[-1][0])
-                        else:
-                            changements.append(syllabes[-1][0])
-                    elif syllabes[-1][1] == syllabes[-1][-1] == 'U':
-                        changements.append('')
+                        #Épenthèse d'un d après L
+                        elif syllabes[-2][-1] == 'L':
+                            changements.append('d'+syllabes[-1][0])
+                        #Épenthèse d'un d après S sonore
+                        elif syllabes[-2][-1] == 'S':
+                            changements.append('d'+syllabes[-1][0])
                     else:
-                        changements.append(syllabes[-1][0])
+                        #Épenthèse d'un b après M
+                        if syllabes[-2][-1] == 'M':
+                            changements.append('b'+syllabes[-1][0])
+                        elif syllabes[-2][-2] == "M":
+                            if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
+                                changements.append('b' + syllabes[-1][0])
+                            else:
+                                changements.append(syllabes[-1][0])
+                        #Épenthèse d'un d après N
+                        elif syllabes[-2][-1] == 'N':
+                            changements.append('d'+syllabes[-1][0])
+                        elif syllabes[-2][-2] == "N":
+                            if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
+                                changements.append('d' + syllabes[-1][0])
+                            else:
+                                changements.append(syllabes[-1][0])
+                        #Épenthèse d'un d après L
+                        # elif syllabes[-2][-1] == 'L':
+                        #     changements.append('d'+syllabes[-1][0])
+                        # elif syllabes[-2][-2] == "L":
+                        #     if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
+                        #         changements.append('d' + syllabes[-1][0])
+                        #     else:
+                        #         changements.append(syllabes[-1][0])
+                        #Épenthèse d'un d après S sonore
+                        elif syllabes[-2][-1] == 'S':
+                            #Épenthèse d'un t après S sourde
+                            if syllabes[-2][-2] == 'S':
+                                changements.append('t')
+                            else:
+                                changements.append('d'+syllabes[-1][0])
+                        elif syllabes[-2][-1] == 'Ę':
+                            changements.append(syllabes[-1][0])
+                        elif syllabes[-2][-2] == "S":
+                            if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
+                                changements.append('d' + syllabes[-1][0])
+                            else:
+                                changements.append(syllabes[-1][0])
+                        #Épenthèse d'un t après S sourde
+                        elif syllabes[-2][-2] == "X":
+                            if syllabes[-2][-1] in listes_lettres['voyelles_atones_sans_A']:
+                                changements.append('t' + syllabes[-1][0])
+                            else:
+                                changements.append(syllabes[-1][0])
+                        elif syllabes[-1][1] == syllabes[-1][-1] == 'U':
+                            changements.append('')
+                        else:
+                            changements.append(syllabes[-1][0])
 
                 #Gestion de R
                 elif syllabes[-1][0] == 'R':
@@ -573,10 +588,13 @@ class SyllabeFinale:
         #Gestion de A tonique
         if 'Á' in syllabes[-1]:
             if syllabes[-1][-1] == 'Á':
-                if syllabes[-1][-2] in ['C', 'G']:
-                    changements.append('ie')
-                else:
+                if len(syllabes[-1]) == 1:
                     changements.append('e')
+                else:
+                    if syllabes[-1][-2] in ['C', 'G']:
+                        changements.append('ie')
+                    else:
+                        changements.append('e')
             elif syllabes[-1][-2] == 'Á':
                 if syllabes[-1][-3] in ['C', 'G']:
                     changements.append('ie')
