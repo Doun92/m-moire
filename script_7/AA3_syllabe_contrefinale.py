@@ -94,7 +94,10 @@ class SyllabeContrefinale:
                     changements.append(syllabes[-4][1])
                 #Les palatales combinées avec R s'affaiblissent toutes en [ir] p.41
                 elif syllabes[-4][0] + syllabes[-4][1] in ['CR', 'GR']:
-                    changements.append('i' + syllabes[-4][1])
+                    if syllabes[-5][-1] and syllabes[-4][2] in ['A', 'Á', 'E', "Ẹ", "Ę", 'I', 'Í']:
+                        changements.append('gr')
+                    else:
+                        changements.append('i' + syllabes[-4][1])
                 #Deuxième groupe avec L en deuxième position
                 #Les labiales combinées avec L subissent des évolutions
                 #qui peuvent aller du maintien à la spirantisation en passant par le redoublement p.41
@@ -151,7 +154,11 @@ class SyllabeContrefinale:
                 elif syllabes[-4][0] + syllabes[-4][1] in ['TJ', 'DJ', 'SJ']:
                     #L'occlusive sourde s'assibile et se sonorise
                     if syllabes[-4][0] + syllabes[-4][1] == 'TJ':
-                        changements.append('is')
+                        #Entre deux A
+                        if syllabes[-5][-1] in ['Á','A'] and syllabes[-3][0] in ['Á','A']:
+                            changements.append('i')
+                        else:
+                            changements.append('is')
                     #L'occlusive sonore s'assimile au yod  puis se simplifie
                     elif syllabes[-4][0] + syllabes[-4][1] == 'DJ':
                         changements.append('i')
@@ -335,7 +342,13 @@ class SyllabeContrefinale:
                         elif syllabes[-4][1] == 'T':
                             changements.append('')
                     else:
-                        changements.append(syllabes[-4][0])
+                        if syllabes[-5][-1] in listes_lettres['consonnes_nasales']:
+                            if syllabes[-4][1] == 'I':
+                                changements.append('ci')
+                            else:
+                                changements.append(syllabes[-4][0])
+                        else:
+                            changements.append(syllabes[-4][0])
 
                 #Gestion de V
                 elif syllabes[-4][0] == 'V':
@@ -373,6 +386,9 @@ class SyllabeContrefinale:
                         #Épenthèse d'un d après S sonore
                         elif syllabes[-5][-1] == 'S':
                             changements.append('d'+syllabes[-4][0])
+                        else:
+                            changements.append(syllabes[-4][0])
+                    #Tous les autres cas
                     else:
                         #Épenthèse d'un b après M
                         if syllabes[-5][-1] == 'M':
@@ -569,13 +585,20 @@ class SyllabeContrefinale:
             if syllabes[-4][-1] == 'Á':
                 #Gestion de la contrepénltième syllabe si elle ne comporte qu'une lettre
                 if len(syllabes[-4]) == 1:
-                    if syllabes[-5][0] in listes_lettres['consonnes_nasales']:
+                    if syllabes[-3][0] in listes_lettres['consonnes_nasales']:
                         changements.append('ai')
+                    #En présence d'un groupe syntaxique dégageant un yod
+                    elif syllabes[-5] == 'TI':
+                        changements.append('a')
                     else:
                         changements.append('e')
                 else:
-                    if syllabes[-5][0] in listes_lettres['consonnes_nasales']:
+                    if syllabes[-3] == 'TJ':
+                        changements.append('a')
+                    #Avant une consonne nasale
+                    elif syllabes[-3][0] in listes_lettres['consonnes_nasales']:
                         changements.append('ai')
+                    #Loi de Bartsch
                     elif syllabes[-4][-2] in ['C', 'G']:
                         changements.append('ie')
                     else:
@@ -783,8 +806,21 @@ class SyllabeContrefinale:
                 pass
                 #Gestion  de L
                 if syllabes[-4][-1] == 'L':
-                    #Vocalisation en W
-                    changements.append('u')
+                    if syllabes[-3][0] == 'W':
+                        changements.append('u')
+                    #L devant M
+                    elif syllabes[-3][0] == 'M':
+                        changements.append(syllabes[-4][-1])
+                    #L face à Y
+                    elif syllabes[-3][0] == 'Y':
+                        #Différentiation entre le féminin et le masculin
+                        if syllabes[-3][1] == syllabes[-1][-1] == 'A':
+                            changements.append(syllabes[-4][-1] + syllabes[-4][-1])
+                        else:
+                            changements.append(syllabes[-4][-1])
+                    else:
+                        changements.append('')
+
                 #Gestion de R
                 elif syllabes[-4][-1] == 'R':
                     changements.append(syllabes[-4][-1])

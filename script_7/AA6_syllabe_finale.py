@@ -95,7 +95,10 @@ class SyllabeFinale:
                         changements.append(syllabes[-1][1])
                 #Les palatales combinées avec R s'affaiblissent toutes en [ir] p.41
                 elif syllabes[-1][0] + syllabes[-1][1] in ['CR', 'GR']:
-                    changements.append('i' + syllabes[-1][1])
+                    if syllabes[-2][-1] and syllabes[-1][2] in ['A', 'Á', 'E', "Ẹ", "Ę", 'I', 'Í']:
+                        changements.append('gr')
+                    else:
+                        changements.append('i' + syllabes[-1][1])
                 #Deuxième groupe avec L en deuxième position
                 #Les labiales combinées avec L subissent des évolutions
                 #qui peuvent aller du maintien à la spirantisation en passant par le redoublement p.41
@@ -370,6 +373,8 @@ class SyllabeFinale:
                         #Épenthèse d'un d après S sonore
                         elif syllabes[-2][-1] == 'S':
                             changements.append('d'+syllabes[-1][0])
+                        else:
+                            changements.append(syllabes[-1][0])
                     else:
                         #Épenthèse d'un b après M
                         if syllabes[-2][-1] == 'M':
@@ -553,7 +558,13 @@ class SyllabeFinale:
             if syllabes[-1][-1] == 'I':
                 changements.append('')
             elif syllabes[-1][-2] == 'I':
-                changements.append('')
+                if len(syllabes[-1]) == 4:
+                    if (syllabes[-1][-4] + syllabes[-1][-3]) in listes_lettres['consonantisme_explosif_complexe']:
+                        changements.append('e')
+                    else:
+                        changements.append('')
+                else:
+                    changements.append('')
             elif syllabes[-1][-3] == 'I':
                 changements.append('')
 
@@ -561,11 +572,17 @@ class SyllabeFinale:
         #Gestion de O:
         if 'O' in syllabes[-1]:
             if syllabes[-1][-1] == 'O':
-                changements.append('')
+                if len(syllabes[-1]) == 1:
+                    changements.append('on')
+                else:
+                     changements.append('')
             elif syllabes[-1][-2] == 'O':
                 if len(syllabes[-1]) > 2:
                     if syllabes[-1][-3] == 'Y':
                         changements.append('o')
+                    #En présence d'un pluriel
+                    elif syllabes[-1][-3] == 'S':
+                        changements.append('e')
                     else:
                         changements.append('')
                 else:

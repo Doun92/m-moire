@@ -94,7 +94,10 @@ class SyllabeAntePenultieme:
                     changements.append(syllabes[-3][1])
                 #Les palatales combinées avec R s'affaiblissent toutes en [ir] p.41
                 elif syllabes[-3][0] + syllabes[-3][1] in ['CR', 'GR']:
-                    changements.append('i' + syllabes[-3][1])
+                    if syllabes[-4][-1] and syllabes[-3][2] in ['A', 'Á', 'E', "Ẹ", "Ę", 'I', 'Í']:
+                        changements.append('gr')
+                    else:
+                        changements.append('i' + syllabes[-3][1])
                 #Deuxième groupe avec L en deuxième position
                 #Les labiales combinées avec L subissent des évolutions
                 #qui peuvent aller du maintien à la spirantisation en passant par le redoublement p.41
@@ -151,7 +154,11 @@ class SyllabeAntePenultieme:
                 elif syllabes[-3][0] + syllabes[-3][1] in ['TJ', 'DJ', 'SJ']:
                     #L'occlusive sourde s'assibile et se sonorise
                     if syllabes[-3][0] + syllabes[-3][1] == 'TJ':
-                        changements.append('is')
+                        #Entre deux A
+                        if syllabes[-4][-1] in ['Á', 'A'] and syllabes[-2][0] in ['Á', 'A']:
+                            changements.append('i')
+                        else:
+                            changements.append('is')
                     #L'occlusive sonore s'assimile au yod  puis se simplifie
                     elif syllabes[-3][0] + syllabes[-3][1] == 'DJ':
                         changements.append('i')
@@ -373,6 +380,8 @@ class SyllabeAntePenultieme:
                         #Épenthèse d'un d après S sonore
                         elif syllabes[-4][-1] == 'S':
                             changements.append('d'+syllabes[-3][0])
+                        else:
+                            changements.append(syllabes[-3][0])
                     else:
                         #Épenthèse d'un b après M
                         if syllabes[-4][-1] == 'M':
@@ -568,13 +577,21 @@ class SyllabeAntePenultieme:
         if 'Á' in syllabes[-3]:
             if syllabes[-3][-1] == 'Á':
                 if len(syllabes[-3]) == 1:
+                    #Avant une consonne nasale
                     if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
                         changements.append('ai')
+                    #En présense d'un groupe syntaxique dégageant un yod
+                    elif syllabes[-4] == 'TI':
+                        changements.append('a')
                     else:
                         changements.append('e')
                 else:
-                    if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                    if syllabes[-2] == 'TJ':
+                        changements.append('a')
+                    #Avant une consonne nasale
+                    elif syllabes[-2][0] in listes_lettres['consonnes_nasales']:
                         changements.append('ai')
+                    #Loi de Bartsch
                     elif syllabes[-3][-2] in ['C', 'G']:
                         changements.append('ie')
                     else:
@@ -773,8 +790,22 @@ class SyllabeAntePenultieme:
                 pass
                 #Gestion  de L
                 if syllabes[-3][-1] == 'L':
-                    #Vocalisation en W
-                    changements.append('u')
+                    #Gestion d'un plurisyllabiques
+                    if syllabes[-2][0] == 'W':
+                        #Vocalisation en W
+                        changements.append('u')
+                    #L devant M
+                    elif syllabes[-2][0] == 'M':
+                        changements.append(syllabes[-3][-1])
+                    #L face à Y
+                    elif syllabes[-2][0] == 'Y':
+                        #Différentiation entre le féminin et le masculin
+                        if syllabes[-2][1] == syllabes[-1][-1] == 'A':
+                            changements.append(syllabes[-3][-1] + syllabes[-3][-1])
+                        else:
+                            changements.append(syllabes[-3][-1])
+                    else:
+                        changements.append('')
                 #Gestion de R
                 elif syllabes[-3][-1] == 'R':
                     changements.append(syllabes[-3][-1])
