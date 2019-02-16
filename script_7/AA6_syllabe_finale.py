@@ -55,7 +55,7 @@ listes_lettres = {
 
 'suffixes' : ['ÁRIU', 'DON', 'JAN'],
 
-'prefixes': [],
+'prefixes': ['AD'],
 
 'désinences_verbales': ['DET']
 
@@ -225,7 +225,10 @@ class SyllabeFinale:
                             elif syllabes[-2][-1] in ['O', "Ǫ", "Ọ", 'U', "Ú",]:
                                 changements.append('')
                         elif syllabes[-1][1] in ['O', "Ǫ", "Ọ", 'U', "Ú",]:
-                            changements.append('')
+                            if syllabes[-2][1] == 'I' and syllabes[-1][1] == syllabes[-1][-1] == 'U':
+                                changements.append(syllabes[-1][0])
+                            else:
+                                changements.append('')
                     else:
                         if syllabes[-1][1] in ['A', 'Á']:
                             changements.append('ch')
@@ -238,6 +241,9 @@ class SyllabeFinale:
                         if syllabes[-1][1] == syllabes[-1][-1] in listes_lettres['voyelles_atones']:
                             changements.append('')
                         elif syllabes[-1][1] == 'T':
+                            changements.append('')
+                    elif syllabes[-2][-2] in listes_lettres['voyelles_toniques'] and syllabes[-2][-1] in listes_lettres['consonnes_nasales']:
+                        if syllabes[-1][1] == syllabes[-1][-1] in listes_lettres['voyelles_atones']:
                             changements.append('')
                     else:
                         changements.append(syllabes[-1][0])
@@ -328,14 +334,25 @@ class SyllabeFinale:
                 #Gestion de T
                 elif syllabes[-1][0] == 'T':
                     if syllabes[-2][-1] in listes_lettres['toutes_les_voyelles']:
-                        if syllabes[-1][1] == syllabes[-1][-1] in listes_lettres['voyelles_atones']:
+                        if syllabes[-2][-1] in listes_lettres['voyelles_toniques']:
+                            if syllabes[-2][1] == 'I':
+                                changements.append('ci')
+                            else:
+                                changements.append('')
+                        elif syllabes[-1][1] == syllabes[-1][-1] in listes_lettres['voyelles_atones']:
                             changements.append('')
                         elif syllabes[-1][1] == 'T':
                             changements.append('')
                         else:
                             changements.append(syllabes[-1][0])
                     else:
-                        changements.append(syllabes[-1][0])
+                        if syllabes[-2][-1] in listes_lettres['consonnes_nasales']:
+                            if syllabes[-1][1] == 'I':
+                                changements.append('ci')
+                            else:
+                                changements.append(syllabes[-1][0])
+                        else:
+                            changements.append(syllabes[-1][0])
 
                 #Gestion de V
                 elif syllabes[-1][0] == 'V':
@@ -606,7 +623,10 @@ class SyllabeFinale:
         if 'Á' in syllabes[-1]:
             if syllabes[-1][-1] == 'Á':
                 if len(syllabes[-1]) == 1:
-                    changements.append('e')
+                    if syllabes[-2] == 'TI':
+                        changements.append('a')
+                    else:
+                        changements.append('e')
                 else:
                     if syllabes[-1][-2] in ['C', 'G']:
                         changements.append('ie')
@@ -756,8 +776,7 @@ class SyllabeFinale:
                     changements.append(syllabes[-1][-1])
                 #Gestion de T
                 elif syllabes[-1][-1] == 'T':
-                    #S'assimile à la consonne suivante
-                    changements.append('')
+                    changements.append(syllabes[-1][-1])
                 #Gestion de V
                 elif syllabes[-1][-1] == 'V':
                     #S'assimile à la consonne suivante

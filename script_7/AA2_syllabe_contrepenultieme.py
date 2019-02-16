@@ -336,7 +336,12 @@ class SyllabeContrepenultieme:
                 #Gestion de T
                 elif syllabes[-5][0] == 'T':
                     if syllabes[-6][-1] in listes_lettres['toutes_les_voyelles']:
-                        if syllabes[-5][1] == syllabes[-5][-1] == syllabes[-4][-1] in listes_lettres['voyelles_atones']:
+                        if syllabes[-6][-1] in listes_lettres['voyelles_toniques']:
+                            if syllabes[-5][1] == 'I':
+                                changements.append('ci')
+                            else:
+                                changements.append('')
+                        elif syllabes[-5][1] == syllabes[-5][-1] == syllabes[-4][-1] in listes_lettres['voyelles_atones']:
                             if syllabes[-4][0] == 'S':
                                 changements.append('t')
                             else:
@@ -344,7 +349,13 @@ class SyllabeContrepenultieme:
                         elif syllabes[-5][1] == 'T':
                             changements.append('')
                     else:
-                        changements.append(syllabes[-5][0])
+                        if syllabes[-6][-1] in listes_lettres['consonnes_nasales']:
+                            if syllabes[-5][1] == 'I':
+                                changements.append('ci')
+                            else:
+                                changements.append(syllabes[-4][0])
+                        else:
+                            changements.append(syllabes[-5][0])
 
                 #Gestion de V
                 elif syllabes[-5][0] == 'V':
@@ -836,11 +847,18 @@ class SyllabeContrepenultieme:
                     if len(syllabes[-5]) == 1:
                         if syllabes[-6][0] in listes_lettres['consonnes_nasales']:
                             changements.append('ai')
+                        #En précense d'un groupe syntaxique dégageant un yod
+                        elif syllabes[-6] == 'TI':
+                            changements.append('a')
                         else:
                             changements.append('e')
                     else:
-                        if syllabes[-4][0] in listes_lettres['consonnes_nasales']:
+                        if syllabes[-4] == 'TJ':
+                            changements.append('a')
+                        #Avant une consonne nasale
+                        elif syllabes[-4][0] in listes_lettres['consonnes_nasales']:
                             changements.append('ai')
+                        #Loi de Bartsch
                         elif syllabes[-5][-2] in ['C', 'G']:
                             changements.append('ie')
                         else:

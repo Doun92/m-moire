@@ -55,7 +55,7 @@ listes_lettres = {
 
 'suffixes' : ['ÁRIU', 'DON', 'JAN'],
 
-'prefixes': [],
+'prefixes': ['AD'],
 
 'désinences_présent': ['BET', 'CET', 'DET', 'NIT', 'TET', 'VET'],
 
@@ -330,19 +330,34 @@ class SyllabeAntePenultieme:
                 elif syllabes[-3][0] == 'S':
                     if syllabes[-4][-1] in listes_lettres['toutes_les_voyelles']:
                         changements.append('s')
+                    else:
+                        changements.append(syllabes[-3][0])
 
                 #Gestion de T
                 elif syllabes[-3][0] == 'T':
                     if syllabes[-4][-1] in listes_lettres['toutes_les_voyelles']:
-                        if syllabes[-3][1] == syllabes[-3][-1] == syllabes[-2][-1] in listes_lettres['voyelles_atones']:
+                        if syllabes[-4][-1] in listes_lettres['voyelles_toniques']:
+                            if syllabes[-3][1] == 'I':
+                                changements.append('ci')
+                            else:
+                                changements.append('')
+                        elif syllabes[-3][1] == syllabes[-3][-1] == syllabes[-2][-1] in listes_lettres['voyelles_atones']:
                             if syllabes[-2][0] == 'S':
                                 changements.append('t')
                             else:
                                 changements.append('')
                         elif syllabes[-3][1] == 'T':
                             changements.append('')
+                        elif syllabes[-3][1] == syllabes[-3][-1] in listes_lettres['voyelles_toniques']:
+                            changements.append(syllabes[-3][0])
                     else:
-                        changements.append(syllabes[-3][0])
+                        if syllabes[-4][-1] in listes_lettres['consonnes_nasales']:
+                            if syllabes[-3][1] == 'I':
+                                changements.append('ci')
+                            else:
+                                changements.append(syllabes[-3][0])
+                        else:
+                            changements.append(syllabes[-3][0])
 
                 #Gestion de V
                 elif syllabes[-3][0] == 'V':
@@ -523,203 +538,455 @@ class SyllabeAntePenultieme:
                 pass
 
         #Gestion des différents vocalismes
-        #Vocalisme contretonique
-        #Gestion de A
-        if 'A' in syllabes[-3]:
-            if syllabes[-3][-1] == 'A':
-                changements.append('e')
-            elif syllabes[-3][-2] == 'A':
-                changements.append('e')
-            elif syllabes[-3][-3] == 'A':
-                changements.append('e')
-
-        #Gestion de E
-        if 'E' in syllabes[-3]:
-            if syllabes[-3][-1] == 'E':
-                changements.append('')
-            elif syllabes[-3][-2] == 'E':
-                changements.append('')
-            elif syllabes[-3][-3] == 'E':
-                changements.append('')
-
-        #Gestion de I:
-        if 'I' in syllabes[-3]:
-            if syllabes[-3][-1] == 'I':
-                changements.append('')
-            elif syllabes[-3][-2] == 'I':
-                changements.append('')
-            elif syllabes[-3][-3] == 'I':
-                changements.append('')
-
-
-        #Gestion de O:
-        if 'O' in syllabes[-3]:
-            if syllabes[-3][-1] == 'O':
-                changements.append('')
-            elif syllabes[-3][-2] == 'O':
-                changements.append('')
-            elif syllabes[-3][-3] == 'O':
-                changements.append('')
-
-
-        #Gestion de U:
-        if 'U' in syllabes[-3]:
-            if syllabes[-3][-1] == 'U':
-                changements.append('')
-            elif syllabes[-3][-2] == 'U':
-                changements.append('')
-            elif syllabes[-3][-3] == 'U':
-                changements.append('')
-
-
-        #Vocalisme tonique
-        #Gestion de A tonique
-        if 'Á' in syllabes[-3]:
-            if syllabes[-3][-1] == 'Á':
-                if len(syllabes[-3]) == 1:
-                    #Avant une consonne nasale
-                    if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
-                        changements.append('ai')
-                    #En présense d'un groupe syntaxique dégageant un yod
-                    elif syllabes[-4] == 'TI':
+        #Gestion des différents vocalismes
+        #Si la première syllabe est un préfixe
+        if syllabes[0] in listes_lettres['prefixes']:
+            if syllabes[-3] == syllabes[1]:
+                #Vocalisme contretonique
+                #Gestion de A
+                if 'A' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'A':
                         changements.append('a')
-                    else:
+                    elif syllabes[-3][-2] == 'A':
+                        changements.append('a')
+                    elif syllabes[-3][-3] == 'A':
+                        changements.append('a')
+
+                #Gestion de E
+                elif 'E' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'E':
                         changements.append('e')
-                else:
-                    if syllabes[-2] == 'TJ':
-                        changements.append('a')
-                    #Avant une consonne nasale
-                    elif syllabes[-2][0] in listes_lettres['consonnes_nasales']:
-                        changements.append('ai')
-                    #Loi de Bartsch
-                    elif syllabes[-3][-2] in ['C', 'G']:
+                    elif syllabes[-3][-2] == 'E':
+                        if syllabes[-3][-2] == syllabes[-3][0]:
+                            if syllabes[-3][-1] == 'L':
+                                changements.append('a')
+                            else:
+                                changements.append('e')
+                        else:
+                            changements.append('e')
+                    elif syllabes[-3][-3] == 'E':
+                        changements.append('e')
+
+                #Gestion de I:
+                elif 'I' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'I':
+                        changements.append('i')
+                    elif syllabes[-3][-2] == 'I':
+                        changements.append('i')
+                    elif syllabes[-3][-3] == 'I':
+                        changements.append('i')
+
+
+                #Gestion de O:
+                elif 'O' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'O':
+                        changements.append('o')
+                    elif syllabes[-3][-2] == 'O':
+                        changements.append('o')
+                    elif syllabes[-3][-3] == 'O':
+                        changements.append('o')
+
+
+                #Gestion de U:
+                elif 'U' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'U':
+                        changements.append('u')
+                    elif syllabes[-3][-2] == 'U':
+                        changements.append('u')
+                    elif syllabes[-3][-3] == 'U':
+                        changements.append('u')
+
+                #Vocalisme tonique
+                #Gestion de A tonique
+                elif 'Á' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'Á':
+                        if len(syllabes[-3]) == 1:
+                            #Avant une consonne nasale
+                            if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                                changements.append('ai')
+                            #En précense d'un groupe syntaxique dégageant un yod
+                            elif syllabes[-4] == 'TI':
+                                changements.append('a')
+                            else:
+                                changements.append('e')
+                        else:
+                            if syllabes[-2] == 'TJ':
+                                changements.append('a')
+                            #Avant une consonne nasale
+                            elif syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                                changements.append('ai')
+                            #Loi de Bartsh
+                            elif syllabes[-3][-2] in ['C','G']:
+                                changements.append('ie')
+                            else:
+                                changements.append('e')
+                    elif syllabes[-3][-2] == 'Á':
+                        #Travail sur le mot
+                        #Fermeture de la bouche en milieu monosyllabique
+                        if len(syllabes) == 1:
+                            if syllabes[-3][-1] == 'G' : #En ajouter d'autres, à chercher
+                                changements.append('o')
+                            else:
+                                changements.append('a')
+                        #Travail sur la syllabe en elle-même
+                        elif len(syllabes[-3]) > 2:
+                            if syllabes[-3][-3] in ['C', 'G']:
+                                changements.append('ie')
+                            else:
+                                changements.append('a')
+                        else:
+                            changements.append('a')
+                    elif syllabes[-3][-3] == 'Á':
+                        if syllabes[-3][-4] in ['C', 'G']:
+                            changements.append('ie')
+                        else:
+                            changements.append('a')
+
+                #Gestion du E fermé
+                elif 'Ẹ' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'Ẹ':
+                        if len(syllabes) == 1:
+                            changements.append('ei')
+                        else:
+                            #Au contact d'un I long final (Ī)
+                            if syllabes[-3][0] == 'Ī':
+                                changements.append('i')
+                            #Influence d'un I long final (Ī)
+                            elif syllabes[-1][-1] == 'Ī':
+                                changements.append('ie')
+                            #Au contact d'un yod geminé  ou en milieu vélaire
+                            elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                                changements.append('i')
+                            #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                            if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                                changements.append('i')
+                            else:
+                                changements.append('ei')
+                    elif syllabes[-3][-2] == 'Ẹ':
+                        changements.append('e')
+                    elif syllabes[-3][-3] == 'Ẹ':
+                        changements.append('e')
+
+                #Gestion du E ouvert
+                elif 'Ę' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'Ę':
+                        #Au contact d'un I long final (Ī)
+                        if syllabes[-2][0] == 'Ī':
+                            changements.append('i')
+                        #Influence d'un I long final (Ī)
+                        elif syllabes[-1][-1] == 'Ī':
+                            changements.append('ie')
+                        #Au contact d'un yod geminé
+                        elif syllabes[-2][0] == 'J':
+                            changements.append("i")
+                        #Au contact d'un yod geminé  ou en milieu vélaire
+                        elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                            changements.append('i')
+                        #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                        elif syllabes[-2][0] == 'X':
+                            changements.append('i')
+                        else:
+                            changements.append('ie')
+                    elif syllabes[-3][-2] == 'Ę':
+                        #Gestion des plurisyllabiques
+                        if len(syllabes) > 1:
+                            if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                                changements.append('i')
+                            else:
+                                changements.append('e')
+                        else:
+                            if syllabes[-3][-1] == 'M':
+                                changements.append('ie')
+                            #Ouverture de la bouche
+                            elif syllabes[-3][-1] == syllabes[-1][-1] == 'R':
+                                changements.append('a')
+                            else:
+                                changements.append('e')
+                    elif syllabes[-3][-3] == 'Ę':
+                        changements.append('e')
+
+                #Gestion de I tonique
+                elif 'Í' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'Í':
+                        #Fermeture face à un O final
+                        if syllabes[-2][0] == syllabes[-1][-1] == 'O':
+                            changements.append('u')
+                        else:
+                            changements.append('i')
+                    elif syllabes[-3][-2] == 'Í':
+                        #Influence d'une nasale
+                        if syllabes[-3][-1] in listes_lettres['consonnes_nasales']:
+                            #Présence d'un yod avec la nasale
+                            if syllabes[-2][0] == 'Y':
+                                changements.append('i')
+                            else:
+                                changements.append('e')
+                        else:
+                            changements.append('i')
+                    elif syllabes[-3][-3] == 'Í':
+                        changements.append('i')
+
+                #Gestion de O fermé
+                elif 'Ọ' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'Ọ':
+                        #Influence d'une nasale
+                        if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                            changements.append('o')
+                        #Au contact d'un I long final
+                        elif syllabes[-2][0] == 'Ī':
+                            changements.append('u')
+                        #Influence d'un I long final (Ī)
+                        elif syllabes[-1][-1] == 'Ī':
+                            changements.append('u')
+                        #Au contact d'un yod geminé  ou en milieu vélaire
+                        elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                            changements.append('u')
+                        #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                        elif syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                            changements.append('u')
+                        else:
+                            changements.append('ou')
+                    elif syllabes[-3][-2] == 'Ọ':
+                        changements.append('o')
+                    elif syllabes[-3][-3] == 'Ọ':
+                        changements.append('o')
+
+                #Gestion de O ouvert
+                elif 'Ǫ' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'Ǫ':
+                        #Influence d'un I long final (Ī)
+                        if syllabes[-1][-1] == 'Ī':
+                            changements.append('oi')
+                        #Au contact d'un yod geminé
+                        elif syllabes[-2][0] == 'J':
+                            changements.append("ui")
+                        #Au contact d'un yod geminé  ou en milieu vélaire
+                        elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                            changements.append('ui')
+                        #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                        elif syllabes[-2][0] == 'X':
+                            changements.append('ui')
+                        else:
+                            changements.append('ue')
+                    elif syllabes[-3][-2] == 'Ǫ':
+                        if len(syllabes) > 1:
+                            #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                            if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                                changements.append('ui')
+                            else:
+                                changements.append('o')
+                        else:
+                            changements.append('o')
+                    elif syllabes[-3][-3] == 'Ǫ':
+                        changements.append('o')
+
+                #Gestion de U
+                elif 'Ú' in syllabes[-3]:
+                    if syllabes[-3][-1] == 'Ú':
+                        changements.append('u')
+                    elif syllabes[-3][-2] == 'Ú':
+                        changements.append('u')
+                    elif syllabes[-3][-3] == 'Ú':
+                        changements.append('u')
+
+        #S'il n'y a pas de préfixes
+        else:
+            #Vocalisme contretonique
+            #Gestion de A
+            if 'A' in syllabes[-3]:
+                if syllabes[-3][-1] == 'A':
+                    changements.append('e')
+                elif syllabes[-3][-2] == 'A':
+                    changements.append('e')
+                elif syllabes[-3][-3] == 'A':
+                    changements.append('e')
+
+            #Gestion de E
+            if 'E' in syllabes[-3]:
+                if syllabes[-3][-1] == 'E':
+                    changements.append('')
+                elif syllabes[-3][-2] == 'E':
+                    changements.append('')
+                elif syllabes[-3][-3] == 'E':
+                    changements.append('')
+
+            #Gestion de I:
+            if 'I' in syllabes[-3]:
+                if syllabes[-3][-1] == 'I':
+                    changements.append('')
+                elif syllabes[-3][-2] == 'I':
+                    changements.append('')
+                elif syllabes[-3][-3] == 'I':
+                    changements.append('')
+
+
+            #Gestion de O:
+            if 'O' in syllabes[-3]:
+                if syllabes[-3][-1] == 'O':
+                    changements.append('')
+                elif syllabes[-3][-2] == 'O':
+                    changements.append('')
+                elif syllabes[-3][-3] == 'O':
+                    changements.append('')
+
+
+            #Gestion de U:
+            if 'U' in syllabes[-3]:
+                if syllabes[-3][-1] == 'U':
+                    changements.append('')
+                elif syllabes[-3][-2] == 'U':
+                    changements.append('')
+                elif syllabes[-3][-3] == 'U':
+                    changements.append('')
+
+            #Vocalisme tonique
+            #Gestion de A tonique
+            if 'Á' in syllabes[-3]:
+                if syllabes[-3][-1] == 'Á':
+                    if len(syllabes[-3]) == 1:
+                        #Avant une consonne nasale
+                        if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                            changements.append('ai')
+                        #En présense d'un groupe syntaxique dégageant un yod
+                        elif syllabes[-4] == 'TI':
+                            changements.append('a')
+                        else:
+                            changements.append('e')
+                    else:
+                        if syllabes[-2] == 'TJ':
+                            changements.append('a')
+                        #Avant une consonne nasale
+                        elif syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                            changements.append('ai')
+                        #Loi de Bartsch
+                        elif syllabes[-3][-2] in ['C', 'G']:
+                            changements.append('ie')
+                        else:
+                            changements.append('e')
+                elif syllabes[-3][-2] == 'Á':
+                    if syllabes[-3][-3] in ['C', 'G']:
                         changements.append('ie')
                     else:
+                        changements.append('a')
+                elif syllabes[-3][-3] == 'Á':
+                    if syllabes[-3][-4] in ['C', 'G']:
+                        changements.append('ie')
+                    else:
+                        changements.append('a')
+
+            #Gestion du E fermé
+            if 'Ẹ' in syllabes[-3]:
+                if syllabes[-3][-1] == 'Ẹ':
+                    #Influence d'un I long final (Ī)
+                    if syllabes[-1][-1] == 'Ī':
+                        changements.append('ie')
+                    #Au contact d'un yod geminé  ou en milieu vélaire
+                    elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                        changements.append('i')
+                    #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                    if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                        changements.append('i')
+                    else:
+                        changements.append('ei')
+                elif syllabes[-3][-2] == 'Ẹ':
+                    changements.append('e')
+                elif syllabes[-3][-3] == 'Ẹ':
+                    changements.append('e')
+
+            #Gestion du E ouvert
+            if 'Ę' in syllabes[-3]:
+                if syllabes[-3][-1] == 'Ę':
+                    #Influence d'un I long final (Ī)
+                    if syllabes[-2][-1] == 'Ī':
+                        changements.append('ie')
+                    #Au contact d'un yod geminé
+                    elif syllabes[-2][0] == 'J':
+                        changements.append("i")
+                    #Au contact d'un yod geminé  ou en milieu vélaire
+                    elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                        changements.append('i')
+                    #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                    elif syllabes[-2][0] == 'X':
+                        changements.append('i')
+                    else:
+                        changements.append('ie')
+                elif syllabes[-3][-2] == 'Ę':
+                    if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                        changements.append('i')
+                    else:
                         changements.append('e')
-            elif syllabes[-3][-2] == 'Á':
-                if syllabes[-3][-3] in ['C', 'G']:
-                    changements.append('ie')
-                else:
-                    changements.append('a')
-            elif syllabes[-3][-3] == 'Á':
-                if syllabes[-3][-4] in ['C', 'G']:
-                    changements.append('ie')
-                else:
-                    changements.append('a')
-
-        #Gestion du E fermé
-        if 'Ẹ' in syllabes[-3]:
-            if syllabes[-3][-1] == 'Ẹ':
-                #Influence d'un I long final (Ī)
-                if syllabes[-1][-1] == 'Ī':
-                    changements.append('ie')
-                #Au contact d'un yod geminé  ou en milieu vélaire
-                elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
-                    changements.append('i')
-                #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
-                    changements.append('i')
-                else:
-                    changements.append('ei')
-            elif syllabes[-3][-2] == 'Ẹ':
-                changements.append('e')
-            elif syllabes[-3][-3] == 'Ẹ':
-                changements.append('e')
-
-        #Gestion du E ouvert
-        if 'Ę' in syllabes[-3]:
-            if syllabes[-3][-1] == 'Ę':
-                #Influence d'un I long final (Ī)
-                if syllabes[-2][-1] == 'Ī':
-                    changements.append('ie')
-                #Au contact d'un yod geminé
-                elif syllabes[-2][0] == 'J':
-                    changements.append("i")
-                #Au contact d'un yod geminé  ou en milieu vélaire
-                elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
-                    changements.append('i')
-                #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                elif syllabes[-2][0] == 'X':
-                    changements.append('i')
-                else:
-                    changements.append('ie')
-            elif syllabes[-3][-2] == 'Ę':
-                if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
-                    changements.append('i')
-                else:
+                elif syllabes[-3][-3] == 'Ę':
                     changements.append('e')
-            elif syllabes[-3][-3] == 'Ę':
-                changements.append('e')
 
-        #Gestion de I tonique
-        if 'Í' in syllabes[-3]:
-            if syllabes[-3][-1] == 'Í':
-                changements.append('i')
-            elif syllabes[-3][-2] == 'Í':
-                #Influence d'une nasale
-                if syllabes[-3][-1] in listes_lettres['consonnes_nasales']:
-                    changements.append('e')
-                else:
+            #Gestion de I tonique
+            if 'Í' in syllabes[-3]:
+                if syllabes[-3][-1] == 'Í':
                     changements.append('i')
-            elif syllabes[-3][-3] == 'Í':
-                changements.append('i')
+                elif syllabes[-3][-2] == 'Í':
+                    #Influence d'une nasale
+                    if syllabes[-3][-1] in listes_lettres['consonnes_nasales']:
+                        changements.append('e')
+                    else:
+                        changements.append('i')
+                elif syllabes[-3][-3] == 'Í':
+                    changements.append('i')
 
-        #Gestion de O fermé
-        if 'Ọ' in syllabes[-3]:
-            if syllabes[-3][-1] == 'Ọ':
-                #Influence d'une nasale
-                if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+            #Gestion de O fermé
+            if 'Ọ' in syllabes[-3]:
+                if syllabes[-3][-1] == 'Ọ':
+                    #Influence d'une nasale
+                    if syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                        changements.append('o')
+                    #Au contact d'un I long final
+                    if syllabes[-2][0] == 'Ī':
+                        changements.append('u')
+                    #Influence d'un I long final (Ī)
+                    elif syllabes[-2][-1] == 'Ī':
+                        changements.append('u')
+                    #Au contact d'un yod geminé  ou en milieu vélaire
+                    elif syllabes[-3] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                        changements.append('u')
+                    #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                    if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                        changements.append('u')
+                    else:
+                        changements.append('ou')
+                elif syllabes[-3][-2] == 'Ọ':
                     changements.append('o')
-                #Au contact d'un I long final
-                if syllabes[-2][0] == 'Ī':
-                    changements.append('u')
-                #Influence d'un I long final (Ī)
-                elif syllabes[-2][-1] == 'Ī':
-                    changements.append('u')
-                #Au contact d'un yod geminé  ou en milieu vélaire
-                elif syllabes[-3] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
-                    changements.append('u')
-                #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
-                    changements.append('u')
-                else:
-                    changements.append('ou')
-            elif syllabes[-3][-2] == 'Ọ':
-                changements.append('o')
-            elif syllabes[-3][-3] == 'Ọ':
-                changements.append('o')
-
-        #Gestion de O ouvert
-        if 'Ǫ' in syllabes[-3]:
-            if syllabes[-3][-1] == 'Ǫ':
-                #Au contact d'un yod geminé
-                if syllabes[-2][0] == 'J':
-                    changements.append("ui")
-                #Au contact d'un yod geminé  ou en milieu vélaire
-                elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
-                    changements.append('ui')
-                #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                elif syllabes[-2][0] == 'X':
-                    changements.append('ui')
-                else:
-                    changements.append('ue')
-            elif syllabes[-3][-2] == 'Ǫ':
-                #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
-                    changements.append('ui')
-                else:
+                elif syllabes[-3][-3] == 'Ọ':
                     changements.append('o')
-            elif syllabes[-3][-3] == 'Ǫ':
-                changements.append('o')
 
-        #Gestion de U
-        if 'Ú' in syllabes[-3]:
-            if syllabes[-3][-1] == 'Ú':
-                changements.append('u')
-            elif syllabes[-3][-2] == 'Ú':
-                changements.append('u')
-            elif syllabes[-3][-3] == 'Ú':
-                changements.append('u')
+            #Gestion de O ouvert
+            if 'Ǫ' in syllabes[-3]:
+                if syllabes[-3][-1] == 'Ǫ':
+                    #Au contact d'un yod geminé
+                    if syllabes[-2][0] == 'J':
+                        changements.append("ui")
+                    #Au contact d'un yod geminé  ou en milieu vélaire
+                    elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                        changements.append('ui')
+                    #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                    elif syllabes[-2][0] == 'X':
+                        changements.append('ui')
+                    else:
+                        changements.append('ue')
+                elif syllabes[-3][-2] == 'Ǫ':
+                    #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                    if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                        changements.append('ui')
+                    else:
+                        changements.append('o')
+                elif syllabes[-3][-3] == 'Ǫ':
+                    changements.append('o')
+
+            #Gestion de U
+            if 'Ú' in syllabes[-3]:
+                if syllabes[-3][-1] == 'Ú':
+                    changements.append('u')
+                elif syllabes[-3][-2] == 'Ú':
+                    changements.append('u')
+                elif syllabes[-3][-3] == 'Ú':
+                    changements.append('u')
 
         #Idem ici, la machine doit d'abord vérifier la longueur de la syllabe pour savoir si elle est uniquement composée d'une voyelle ou d'autre chose.
         if len(syllabes[-3]) == 1:
