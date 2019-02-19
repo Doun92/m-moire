@@ -45,10 +45,13 @@ listes_lettres = {
 'yod_et_wau' : ["W", "Y"],
 
 'consonantisme_explosif_complexe' : [
-'BR', 'PR', 'VR', 'DR', 'TR', 'CR', 'GR',
-'BL', 'FL', 'PL', 'DL', 'TL', 'CL', 'GL',
-'BW', 'PW', 'VW', 'DW', 'SW', 'TW', 'CW', 'GW', 'QW',
-'BJ', 'FJ', 'PJ', 'VJ', 'DJ', 'SJ', 'TJ', 'CJ', 'GJ',
+'BR', 'CR', 'DR', 'GR', 'HR', 'PR', 'TR', 'VR',
+'BL', 'CL', 'DL', 'FL', 'GL', 'HL', 'PL', 'SL', 'TL',
+'BW', 'CW', 'DW', 'GW', 'PW', 'QW', 'SW', 'TW', 'VW',
+'BJ', 'CJ', 'DJ', 'FJ', 'GJ', 'LJ', 'PJ', 'RJ', 'SJ', 'TJ', 'VJ',
+'SN',
+'NT',
+'SB',
 ],
 
 'consonantisme_implosif_complexe': [],
@@ -98,7 +101,10 @@ class SyllabeAntePenultieme:
                 #Les palatales combinées avec R s'affaiblissent toutes en [ir] p.41
                 elif syllabes[-3][0] + syllabes[-3][1] in ['CR', 'GR']:
                     if syllabes[-4][-1] and syllabes[-3][2] in ['A', 'Á', 'E', "Ẹ", "Ę", 'I', 'Í']:
-                        changements.append('gr')
+                        if syllabes[-3][2] in listes_lettres['voyelles_atones_sans_A'] and syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                            changements.append(syllabes[-3][1])
+                        else:
+                            changements.append('gr')
                     else:
                         changements.append('i' + syllabes[-3][1])
                 #Deuxième groupe avec L en deuxième position
@@ -181,6 +187,11 @@ class SyllabeAntePenultieme:
                     #La palatale sourde s'assibile encore
                     elif syllabes[-3][0] + syllabes[-3][1] == 'GJ':
                         changements.append('i')
+                elif syllabes[-3][0] + syllabes[-3][1] == 'RJ':
+                    changements.append(syllabes[-3][0])
+                elif syllabes[-3][0] + syllabes[-3][1] == 'LJ':
+                    if syllabes[-4][-1] == 'I':
+                        changements.append('ill')
 
             #Si ce n'est pas le cas, il traitera de l'élément consonantique simple
             #Consonantisme explosif
@@ -343,7 +354,10 @@ class SyllabeAntePenultieme:
                 #Gestion de S
                 elif syllabes[-3][0] == 'S':
                     if syllabes[-4][-1] in listes_lettres['toutes_les_voyelles']:
-                        changements.append('s')
+                        if syllabes[-4][-1] == syllabes[-3][1]:
+                            changements.append('')
+                        else:
+                            changements.append('s')
                     else:
                         changements.append(syllabes[-3][0])
 
@@ -352,7 +366,10 @@ class SyllabeAntePenultieme:
                     if syllabes[-4][-1] in listes_lettres['toutes_les_voyelles']:
                         if syllabes[-4][-1] in listes_lettres['voyelles_toniques']:
                             if syllabes[-3][1] == 'I':
-                                changements.append('ci')
+                                if syllabes[-2][0] == 'A':
+                                    changements.append('c')
+                                else:
+                                    changements.append('ci')
                             else:
                                 changements.append('')
                         elif syllabes[-3][1] == syllabes[-3][-1] == syllabes[-2][-1] in listes_lettres['voyelles_atones']:
@@ -411,6 +428,7 @@ class SyllabeAntePenultieme:
                             changements.append('d'+syllabes[-3][0])
                         else:
                             changements.append(syllabes[-3][0])
+                    #Tous les autres cas
                     else:
                         #Épenthèse d'un b après M
                         if syllabes[-4][-1] == 'M':
@@ -418,6 +436,8 @@ class SyllabeAntePenultieme:
                         elif syllabes[-4][-2] == "M":
                             if syllabes[-4][-1] in listes_lettres['voyelles_atones_sans_A'] and syllabes[-4] != syllabes[0]:
                                 changements.append('b' + syllabes[-3][0])
+                            elif syllabes[-4][-1] == 'Ę':
+                                changements.append(syllabes[-3][0])
                             else:
                                 changements.append(syllabes[-3][0])
                         #Épenthèse d'un d après N
@@ -530,7 +550,7 @@ class SyllabeAntePenultieme:
                     changements.append(syllabes[-3][0])
 
                 #Gestion du H germain
-            if syllabes[-3][0] == 'H':
+            elif syllabes[-3][0] == 'H':
                 pass
 
                 #Gestion de W
@@ -861,7 +881,13 @@ class SyllabeAntePenultieme:
             #Gestion de O:
             if 'O' in syllabes[-3]:
                 if syllabes[-3][-1] == 'O':
-                    changements.append('')
+                    if len(syllabes[-3]) == 1:
+                        if syllabes[-3] == syllabes[-2][0] or syllabes[-2][0]:
+                            changements.append(syllabes[-3])
+                        else:
+                            changements.append('')
+                    else:
+                        changements.append('')
                 elif syllabes[-3][-2] == 'O':
                     changements.append('')
                 elif syllabes[-3][-3] == 'O':
@@ -921,18 +947,22 @@ class SyllabeAntePenultieme:
             if 'Ẹ' in syllabes[-3]:
                 if syllabes[-3][-1] == 'Ẹ':
                     #Influence d'un I long final (Ī)
-                    if syllabes[-1][-1] == 'Ī':
+                    if syllabes[-2][-1] == 'Ī':
                         changements.append('ie')
+                    #Au contact d'une consonne nasale
+                    elif syllabes[-2][0] in listes_lettres['consonnes_nasales']:
+                            changements.append('e')
                     #Au contact d'un yod geminé  ou en milieu vélaire
                     elif syllabes[-2] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
-                        changements.append('i')
-                    #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                    if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
                         changements.append('i')
                     else:
                         changements.append('ei')
                 elif syllabes[-3][-2] == 'Ẹ':
-                    changements.append('e')
+                    #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
+                    if syllabes[-3][-1] + syllabes[-2][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
+                        changements.append('i')
+                    else:
+                        changements.append('e')
                 elif syllabes[-3][-3] == 'Ẹ':
                     changements.append('e')
 
@@ -1111,7 +1141,7 @@ class SyllabeAntePenultieme:
                 #Gestion  de L
                 if syllabes[-3][-1] == 'L':
                     #Gestion d'un plurisyllabiques
-                    if syllabes[-2][0] == 'W':
+                    if syllabes[-2][0] in ['S', 'W']:
                         #Vocalisation en W
                         changements.append('u')
                     #L devant M
