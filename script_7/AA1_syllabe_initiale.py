@@ -54,7 +54,8 @@ listes_lettres = {
 'SN', 'TN',
 'SP',
 'BR', 'CR', 'DR', 'FR', 'GR', 'HR', 'LR', 'PR', 'SR', 'RR', 'TR', 'VR',
-'CT', 'DT', 'NT', 'PT', 'VT',
+'PS',
+'CT', 'DT', 'NT', 'PT', 'ST', 'VT',
 'BW', 'CW', 'DW', 'GW', 'PW', 'QW', 'SW', 'TW', 'VW',
 'STR',
 ],
@@ -217,6 +218,9 @@ class SyllabeInitiale:
                             else:
                                 changements.append('e'+syllabes[0][0] + syllabes[0][1])
 
+                    elif syllabes[0][0] + syllabes[0][1] == 'PS':
+                        changements.append(syllabes[0][1])
+
 
                 #Si ce n'est pas le cas, il traitera de l'élément consonantique simple
                 #Consonantisme explosif
@@ -269,7 +273,14 @@ class SyllabeInitiale:
 
                     #Gestion de S
                     elif syllabes[0][0] == 'S':
-                        changements.append(syllabes[0][0])
+                        #Pour plus de facilité, je vais mettre ici le STR
+                        if len(syllabes[0]) > 3:
+                            if syllabes[0][0] + syllabes[0][1] + syllabes[0][2] == 'STR':
+                                changements.append('estr')
+                            else:
+                                changements.append(syllabes[0][0])
+                        else:
+                            changements.append(syllabes[0][0])
 
                     #Gestion de T
                     elif syllabes[0][0] == 'T':
@@ -789,9 +800,12 @@ class SyllabeInitiale:
                     elif syllabes[0][-1] == 'T':
                         if syllabes[0][-1] == syllabes[-1][-1]:
                             changements.append(syllabes[0][-1])
-                        else:
-                            #S'assimile à la consonne suivante
+                        #S'assimile à la consonne suivante
+                        elif syllabes[1][0] in listes_lettres['toutes_les_voyelles']:
                             changements.append('')
+                        else:
+                            changements.append(syllabes[0][-1])
+
                     #Gestion de V
                     elif syllabes[0][-1] == 'V':
                         #S'assimile à la consonne suivante
@@ -806,7 +820,28 @@ class SyllabeInitiale:
                     if syllabes[0][-1] == 'L':
                         #Gestion d'un mot plurisyllabique
                         if len(syllabes) > 1:
-                            if syllabes[1][0] in ['B', 'C', 'D', 'G', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']:
+                            if len(syllabes[0]) > 3 :
+                                if syllabes[0][0] + syllabes[0][1] == 'PS':
+                                    changements.append(syllabes[0][-1])
+                                elif syllabes[1][0] in ['B', 'C', 'D', 'G', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']:
+                                    if syllabes[1][0] == 'L':
+                                        if syllabes[0][-2] in ['Á', 'Ę']:
+                                            changements.append('')
+                                        else:
+                                            changements.append('u')
+                                    else:
+                                        changements.append('u')
+                                #L devant M
+                                elif syllabes[1][0] == 'M':
+                                    changements.append(syllabes[0][-1])
+                                #L face à Y
+                                elif syllabes[1][0] == 'Y':
+                                    #Différentiation entre le féminin et le masculin
+                                    if syllabes[1][1] == syllabes[-1][-1] == 'A':
+                                        changements.append(syllabes[0][-1] + syllabes[0][-1])
+                                    else:
+                                        changements.append(syllabes[0][-1])
+                            elif syllabes[1][0] in ['B', 'C', 'D', 'G', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W']:
                                 if syllabes[1][0] == 'L':
                                     if syllabes[0][-2] in ['Á', 'Ę']:
                                         changements.append('')
@@ -828,6 +863,7 @@ class SyllabeInitiale:
                                 changements.append('')
                         else:
                             changements.append('')
+
                     #Gestion de R
                     elif syllabes[0][-1] == 'R':
                         if syllabes[1][0] + syllabes[1][1] == 'SC':

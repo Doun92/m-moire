@@ -799,6 +799,9 @@ class SyllabeFinale:
                 changements.append('')
 
 
+        """
+        À CONTINUER !!! SELON LA FEUILLE pour les syllabes de 3 lettres
+        """
         #Gestion de U:
         if 'U' in syllabes[-1]:
             if syllabes[-1][-1] == 'U':
@@ -807,26 +810,46 @@ class SyllabeFinale:
                         changements.append(syllabes[-1][-1])
                     else:
                         changements.append('')
-                elif len(syllabes[-1]) == 3:
-                    if syllabes[-1][-3] in listes_lettres['consonnes']:
-                        changements.append('e')
-                    elif syllabes[-2][-1] in listes_lettres['consonnes']:
-                        changements.append('e')
-                    else:
-                        changements.append('')
-                elif syllabes[-1][-2] in ['D', 'L']:
-                    if syllabes[-2][-1] in listes_lettres['consonnes']:
-                        changements.append('e')
-                    else:
-                        changements.append('')
-                else:
-                    if syllabes[-2][-1] == 'P':
-                        if syllabes[-1][0] == 'T':
+                elif len(syllabes[-1]) == 2:
+                    if syllabes[-2][-1] == 'G':
+                        if syllabes[-1][0] == 'D':
                             changements.append('e')
+                        elif syllabes[-2][-1] == 'P':
+                            if syllabes[-2][-2] == 'Á':
+                                changements.append('e')
+                            else:
+                                changements.append('')
+                        elif syllabes[-2][-1] == ' L':
+                            if syllabes[-1][0] == 'M':
+                                changements.append('e')
+                            else:
+                                changements.append('')
                         else:
                             changements.append('')
-                    else:
-                        changements.append('')
+                elif len(syllabes[-1]) == 3:
+                    changements.append('e')
+                else:
+                    changements.append('e')
+                # elif len(syllabes[-1]) == 3:
+                #     if syllabes[-1][-3] in listes_lettres['consonnes']:
+                #         changements.append('e')
+                #     elif syllabes[-2][-1] in listes_lettres['consonnes']:
+                #         changements.append('e')
+                #     else:
+                #         changements.append('')
+                # elif syllabes[-1][-2] in ['D', 'L']:
+                #     if syllabes[-2][-1] in listes_lettres['consonnes']:
+                #         changements.append('e')
+                #     else:
+                #         changements.append('')
+                # else:
+                #     if syllabes[-2][-1] == 'P':
+                #         if syllabes[-1][0] == 'T':
+                #             changements.append('e')
+                #         else:
+                #             changements.append('')
+                #     else:
+                #         changements.append('')
             elif syllabes[-1][-2] == 'U':
                 changements.append('')
             elif syllabes[-1][-3] == 'U':
