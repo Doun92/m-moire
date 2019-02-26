@@ -96,7 +96,8 @@ class SyllabeInitiale:
             #Gestion du consonantisme explosif
             #En premier lieu, nous devons vérifier la longueur de de la syllabe, car si elle fait un caractère de longueur, ce dernier est automatiquement une voyelle
             if len(syllabes[0]) == 1:
-                pass
+                if syllabes[0] == 'J':
+                    changements.append(syllabes[0])
             else:
                 #D'abord l'algorithme vérifie s'il à affaire avec un élément consonantique complexe
                 #Consonantisme explosif complexe
@@ -104,13 +105,19 @@ class SyllabeInitiale:
                     #Premier groupe avec R en deuxième position
                     #Les labiales combinées avec R évoluent toutes vers [vr] p.40.
                     if syllabes[0][0] + syllabes[0][1] in ['BR', 'PR', 'VR']:
-                        changements.append(syllabes[0][0] + syllabes[0][1])
+                        if syllabes[1][0] + syllabes[1][1] == 'FỌ':
+                            changements.append('par')
+                        else:
+                            changements.append(syllabes[0][0] + syllabes[0][1])
                     #Les dentales combinées avec R se simplifient p.40-41, sauf si elles sont en première absolue
                     elif syllabes[0][0] + syllabes[0][1] in ['DR', 'TR']:
                         changements.append(syllabes[0][0] + syllabes[0][1])
                     elif syllabes[0][0] + syllabes[0][1] in ['CR', 'FR', 'GR']:
                         if syllabes[0][2] == 'A':
-                            changements.append('fl')
+                            if syllabes[1] == 'GỌ':
+                                changements.append(syllabes[0][0] + syllabes[0][1])
+                            else:
+                                changements.append('fl')
                         else:
                             changements.append(syllabes[0][0] + syllabes[0][1])
                     #Gestion de HR, groupe trouvé dans quelques mots d'origine germaine
@@ -119,11 +126,18 @@ class SyllabeInitiale:
                             changements.append('f'+syllabes[0][1])
                         elif syllabes[0][2] == 'Ẹ':
                             changements.append(syllabes[0][1])
+
                     #Deuxième groupe avec L en deuxième position
                     #Les labiales combinées avec L subissent des évolutions
                     #qui peuvent aller du maintien à la spirantisation en passant par le redoublement p.41
                     elif syllabes[0][0] + syllabes[0][1] in ['BL', 'FL', 'PL']:
-                        changements.append(syllabes[0][0] + syllabes[0][1])
+                        if len(syllabes[1]) > 2 :
+                            if syllabes[1][0] + syllabes[1][1] == 'BL':
+                                changements.append(syllabes[0][0])
+                            else:
+                                changements.append(syllabes[0][0] + syllabes[0][1])
+                        else:
+                            changements.append(syllabes[0][0] + syllabes[0][1])
                     #Les dentales combinées avec L connaissent différentes évolutions p.42
                     elif syllabes[0][0] + syllabes[0][1] in ['DL', 'TL']:
                         if syllabes[0][0] == 'T':
@@ -139,6 +153,10 @@ class SyllabeInitiale:
                             changements.append('f' + syllabes[0][1])
                         elif syllabes[0][2] == 'Ọ':
                             changements.append(syllabes[0][1])
+                    elif syllabes[0][0] + syllabes[0][1] == 'SL':
+                        if syllabes[0][2] == 'Á':
+                            changements.append('escl')
+
                     #Troisième groupe avec un wau (W) en deuxième position
                     #Les labiales combinée au wau aboutissent à un amuïssement
                     #en arrondissant la voyelle tonique qui suit ou qui précède p.43
@@ -147,7 +165,7 @@ class SyllabeInitiale:
                     #Les dentales combinées au wau constituent des séquences complexes
                     #la geminée s'amuit p.43
                     elif syllabes[0][0] + syllabes[0][1] in ['DW', 'TW', 'SW']:
-                        changements.append('u')
+                        changements.append('D')
                     #Les vélaires avec un wau sont réparties en deux catégories p.44
                     elif syllabes[0][0] + syllabes[0][1] in ['CW', 'GW', 'QW', 'KW']:
                         #la plus ancienne (QW) se prolonge généralement en [v]
@@ -167,6 +185,7 @@ class SyllabeInitiale:
                                 changements.append('')
                             else:
                                 changements.append('u')
+
                     #Quatrième groupe avec un yod (J) en deuxième position
                     #Les labiales combinées au yod subissent une évolution différente
                     #La sourde  se redouble et voit la semi-voyelle se durcir
@@ -192,6 +211,9 @@ class SyllabeInitiale:
                         #La palatale sourde s'assibile encore
                         elif syllabes[0][0] + syllabes[0][1] == 'GJ':
                             changements.append('i')
+
+                    elif syllabes[0][0] + syllabes[0][1] == 'PT':
+                        changements.append(syllabes[0][1])
 
                     #Les S suivis d'une consonne ou d'une sonante subissent une prosthèse
                     elif syllabes[0][0] + syllabes[0][1] + syllabes[0][2] in ['STR', 'SCR']:
@@ -227,7 +249,7 @@ class SyllabeInitiale:
 
                 #Si ce n'est pas le cas, il traitera de l'élément consonantique simple
                 #Consonantisme explosif
-                elif syllabes[0][0] in listes_lettres['consonnes']:
+                elif syllabes[0][0] in listes_lettres['consonnes'] or syllabes[0] in listes_lettres['consonnes']:
                     #Gestion de B
                     #L'occlusive labiale sonore se spirantise puis suit une évolution selon son entourage
                     if syllabes[0][0] == 'B':
@@ -262,7 +284,10 @@ class SyllabeInitiale:
 
                     #Gestion de J
                     elif syllabes[0][0] == 'J':
-                        changements.append('j')
+                        if syllabes[0] == 'J':
+                            changements.append(syllabes[0][0])
+                        else:
+                            changements.append('j')
 
                     #Gestion de K
                     elif syllabes[0][0] == 'K':
@@ -347,6 +372,12 @@ class SyllabeInitiale:
                 if syllabes[0][0] == 'Y':
                     changements.append('j')
 
+                if syllabes[0] == 'J':
+                    changements.append('j')
+
+                if syllabes[0][0] == 'Z':
+                    changements.append('g')
+
             #Gestion des différents vocalismes
             #Cas où il y a AU
             if 'AU' in syllabes[0]:
@@ -358,20 +389,33 @@ class SyllabeInitiale:
                     if syllabes[0][-1] == 'A':
                         if len(syllabes[1]) > 1:
                             if len(syllabes[0]) > 2 :
-                                if syllabes[0][0] + syllabes[0][1] == 'SM':
-                                    changements.append('e')
+                                if syllabes[0][0] + syllabes[0][1] in ['PL', 'SM']:
+                                    if syllabes[1] == 'CÍ':
+                                        changements.append('ai')
+                                    else:
+                                        changements.append('e')
                                 elif syllabes[0][0] + syllabes[0][1] == 'FR':
                                     changements.append('ai')
-                                elif syllabes[1][0] + syllabes[1][1] == 'VỌ':
+                                elif syllabes[1][0] + syllabes[1][1] in ['VỌ']:
                                     changements.append('e')
                                 elif syllabes[1][0] + syllabes[1][1] == 'GỌ':
                                     changements.append('')
                                 else:
                                     changements.append('a')
                             else:
-                                if syllabes[1][0] + syllabes[1][1] == 'VỌ':
-                                    changements.append('e')
-                                elif syllabes[1][0] + syllabes[1][1] == 'GỌ':
+                                if syllabes[1][0] + syllabes[1][1] in ['BÁ', 'BÚ', 'GỌ', 'PẸ', 'PÚ', 'VỌ']:
+                                    if len(syllabes[1]) > 2:
+                                        if syllabes[1][2] == 'S':
+                                            changements.append('a')
+                                        elif syllabes[1][2] == 'N':
+                                            changements.append('')
+                                        else:
+                                            changements.append('e')
+                                    elif len(syllabes) == 2:
+                                        changements.append('')
+                                    else:
+                                        changements.append('e')
+                                elif syllabes[1][0] + syllabes[1][1] in ['GỌ', 'MÁ', 'MÍ']:
                                     changements.append('')
                                 elif syllabes[1] == 'BRE':
                                     changements.append('o')
@@ -385,6 +429,8 @@ class SyllabeInitiale:
                         if len(syllabes[0]) == 2:
                             if syllabes[0][1] == 'G':
                                 changements.append('ai')
+                            elif syllabes[1][0] == 'W':
+                                changements.append('e')
                             else:
                                 changements.append('a')
                         else:
@@ -397,6 +443,8 @@ class SyllabeInitiale:
                     if syllabes[0][-1] == 'E':
                         if syllabes[1][0] == 'Ọ':
                             changements.append('')
+                        elif syllabes[1][0] == 'C':
+                            changements.append('ei')
                         else:
                             changements.append('e')
                     elif syllabes[0][-2] == 'E':
@@ -440,7 +488,13 @@ class SyllabeInitiale:
                 #Gestion de O:
                 elif 'O' in syllabes[0]:
                     if syllabes[0][-1] == 'O':
-                        changements.append('o')
+                        if syllabes[0][0] + syllabes[0][1] == 'PR':
+                            if syllabes[1][0] == 'F':
+                                changements.append('')
+                            else:
+                                changements.append('o')
+                        else:
+                            changements.append('o')
                     elif syllabes[0][-2] == 'O':
                         if syllabes[0][-1] == 'N':
                             if syllabes[1][0] + syllabes[1][1] == 'GT':
@@ -457,6 +511,8 @@ class SyllabeInitiale:
                 elif 'U' in syllabes[0]:
                     if syllabes[0][-1] == 'U':
                         if syllabes[1][0] == 'Ọ':
+                            changements.append('')
+                        elif syllabes[1] == 'CÚ':
                             changements.append('')
                         else:
                             changements.append('u')
@@ -491,14 +547,19 @@ class SyllabeInitiale:
                             #Présence d'un yod
                             elif syllabes[1][0] in ['X', 'Y']:
                                 changements.append('ai')
+                            elif syllabes[1] == 'I':
+                                changements.append('a')
                             elif syllabes[0][0] + syllabes[0][1] == 'GR':
                                 if syllabes[1][0] != 'N':
-                                    changements.append('e')
+                                    if syllabes[1] == 'CJ':
+                                        changements.append('a')
+                                    else:
+                                        changements.append('e')
                                 else:
                                     changements.append('a')
                             else:
                                 if len(syllabes[1]) > 1:
-                                    if syllabes[1][0] + syllabes[1][1] in ['CA', 'CR', 'GA', 'GI']:
+                                    if syllabes[1][0] + syllabes[1][1] in ['CA', 'CR', 'GA', 'GI', 'GJ', 'TL']:
                                         changements.append('a')
                                     elif syllabes[1][0] + syllabes[1][1] == 'CU':
                                         changements.append('ai')
@@ -567,6 +628,8 @@ class SyllabeInitiale:
                         else:
                             if syllabes[0][-1] == 'Q':
                                 changements.append('e')
+                            elif 'J' in syllabes[1]:
+                                changements.append('ai')
                             else:
                                 changements.append('a')
                     elif syllabes[0][-3] == 'Á':
@@ -610,12 +673,12 @@ class SyllabeInitiale:
                                 changements.append('i')
                             elif len(syllabes[1]) > 1 :
                                 #Au contact d'un yod geminé  ou en milieu vélaire
-                                if syllabes[1] in ['BJ', 'VJ', 'DJ', 'GJ', 'GI', 'GE']:
+                                if syllabes[1] in ['BJ', 'VJ', 'DJ', 'GI', 'GE', 'CE']:
                                     if syllabes[1] == syllabes[-1]:
                                         changements.append('ei')
                                     else:
                                         changements.append('i')
-                                elif syllabes[1] in ['PJ', 'RJ']:
+                                elif syllabes[1] in ['GJ', 'PJ', 'RJ']:
                                     changements.append('e')
                                 elif syllabes[1][0] + syllabes[1][1] in ['CI', 'BR']:
                                     if syllabes[0][-1] == syllabes[0]:
@@ -649,10 +712,14 @@ class SyllabeInitiale:
                                     changements.append('e')
                             elif syllabes[1][0] == 'R':
                                 changements.append('i')
+                            elif syllabes[1][0] + syllabes[1][1] == 'GW':
+                                changements.append('a')
                             else:
                                 changements.append('ei')
                         elif syllabes[0][-1] == 'C':
                             changements.append('ei')
+                        elif syllabes[0][-1] == 'M':
+                            changements.append('ie')
                         elif syllabes[1] == syllabes[-1] == 'WĪ':
                             changements.append('u')
                         else:
@@ -681,7 +748,7 @@ class SyllabeInitiale:
                             elif syllabes[1][0] == 'J':
                                 changements.append("i")
                             #Au contact d'un yod geminé  ou en milieu vélaire
-                            elif syllabes[1] in ['BJ', 'VJ', 'DJ', 'GJ', 'TJ', 'GI', 'GE']:
+                            elif syllabes[1] in ['BJ', 'CJ', 'VJ', 'DJ', 'GJ', 'TJ', 'GI', 'GE']:
                                 changements.append('i')
                             #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
                             elif syllabes[1][0] == 'X':
@@ -706,6 +773,8 @@ class SyllabeInitiale:
                                 changements.append('i')
                             elif syllabes[0][-1] + syllabes[1][0] == 'QW':
                                 changements.append('i')
+                            elif syllabes[0][-1] + syllabes[1][0] == 'DC':
+                                changements.append('ie')
                             else:
                                 changements.append('e')
                         else:
@@ -796,7 +865,9 @@ class SyllabeInitiale:
                             else:
                                 changements.append('ou')
                     elif syllabes[0][-2] == 'Ọ':
-                        if syllabes[0][-1] == 'M':
+                        if syllabes[0][0] + syllabes[0][1] == 'DW':
+                            changements.append('ou')
+                        elif syllabes[0][-1] == 'M':
                             if syllabes[-1][0] == 'N':
                                 if syllabes[-1][-1] == 'A':
                                     changements.append('a')
@@ -841,7 +912,7 @@ class SyllabeInitiale:
                         elif len(syllabes[1]) > 1:
                             if syllabes[1][0] + syllabes[1][1] == 'CR':
                                 changements.append('u')
-                            elif syllabes[1][0] + syllabes[1][1] == 'SA':
+                            elif syllabes[1][0] + syllabes[1][1] in ['DL', 'SA']:
                                 changements.append('o')
                             elif syllabes[1][0] + syllabes[1][1] == 'CA':
                                 changements.append('ou')
@@ -849,15 +920,27 @@ class SyllabeInitiale:
                                 changements.append('ui')
                             elif syllabes[1] == 'LE':
                                 changements.append('oi')
+                            elif len(syllabes[-1]) > 3:
+                                if syllabes[0][0] + syllabes[0][1] + syllabes[0][2] == 'SCR':
+                                    changements.append('oe')
+                                else:
+                                    changements.append('ue')
                             else:
                                 changements.append('ue')
                     elif syllabes[0][-2] == 'Ǫ':
                         if len(syllabes) > 1:
                             #Au contact d'un élément ou d'un groupe comportant ou dégageant un yod
-                            if syllabes[0][-1] + syllabes[1][0] in ['CT', 'SJ', 'LJ', 'CL', 'ST']:
-                                changements.append('ui')
+                            if syllabes[0][-1] + syllabes[1][0] in ['SJ', 'LJ', 'CL', 'ST']:
+                                if syllabes[1][1] == syllabes[1][-1] == 'A':
+                                    changements.append('o')
+                                else:
+                                    changements.append('ui')
                             elif syllabes[0][-1] + syllabes[1][0] == 'NG':
                                 changements.append('oi')
+                            elif syllabes[0][-1] + syllabes[1][0] == 'CT':
+                                changements.append('ui')
+                            elif syllabes[0][-1] + syllabes[1][0] == 'WT':
+                                changements.append('ue')
                             else:
                                 changements.append('o')
                         else:
@@ -917,9 +1000,15 @@ class SyllabeInitiale:
                     elif syllabes[0][-1] == 'D':
                         if syllabes[1] == syllabes[-1] == 'WĪ':
                             changements.append('i')
+                        elif syllabes[1][0] == 'N':
+                            if syllabes[1][1] == syllabes[1][-1] == 'A':
+                                changements.append('n')
+                            else:
+                                changements.append('')
                         else:
                             #S'assimile à la consonne suivante
                             changements.append('')
+
                     #Gestion  de F
                     elif syllabes[0][-1] == 'F':
                         changements.append('')
@@ -965,6 +1054,7 @@ class SyllabeInitiale:
                                 changements.append(syllabes[0][-1])
                         else:
                             changements.append(syllabes[0][-1])
+
                     #Gestion de T
                     elif syllabes[0][-1] == 'T':
                         if syllabes[0][-1] == syllabes[-1][-1]:
@@ -972,8 +1062,10 @@ class SyllabeInitiale:
                         #S'assimile à la consonne suivante
                         elif syllabes[1][0] in listes_lettres['toutes_les_voyelles']:
                             changements.append('')
-                        elif syllabes[1][0] == 'T':
+                        elif syllabes[1][0] in ['D', 'T']:
                             changements.append('')
+                        elif syllabes[1][0] == 'N':
+                            changements.append('s')
                         else:
                             changements.append(syllabes[0][-1])
 
