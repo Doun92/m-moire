@@ -1,30 +1,25 @@
 def create_dictionary():
-        dictionary = open('dictionary.txt', 'w+')
-        # dict = {
-        #
-        # }
+        dictionary = open('dictionary_Mariale_T.py', 'w+', encoding = 'utf-8')
 
         #Tentative d'ouverture du fichier
         try:
             #Ouvre et lit le fichier texte
-            with open('liste.txt', 'r') as file:
+            with open('liste_Mariale.txt', 'r') as file:
+                dictionary.write('dict = { \n')
                 for line in file:
                     # print(line)
+
 
                     for char in "\n":
                         line = line.replace(char, '')
 
-                        dictionary.write('" " : "%s", \n' % line)
 
-                    # print("Entrez l'étymon latin du terme suivant : " + line )
-                    # x = input()
-                    #
-                    # dict.update( {x : line})
-                    #
-                    # # print(line)
-                    # print(dict)
-                    # dictionary.write(str(dict))
+                        test = line.strip()
+                        # print(line)
 
+                        dictionary.write('" " : "%s",\n' % test)
+
+                dictionary.write('}')
         except IOError:
             print("Couldn't open file.")
             return

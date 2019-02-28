@@ -3,7 +3,7 @@ Sépare un terme écrit en latin vulgaire en une liste de ses syllabes.
 Le travail a été inspiré du travail de Luke Hollis.
 """
 
-__author__ = ['Daniel Escoval <daniel.esco92@gmail.com>']
+__author__ = ['Luke Hollis <lukehollis@gmail.com>']
 __license__ = 'MIT License. See LICENSE.'
 
 
@@ -18,7 +18,7 @@ LATIN = {
 
         #Voyelles avec les signes diacritiques ouvert/fermé
          'vowels': [
-             "J", "Í", "I", "Ī", "Ę", "Ẹ", "A", "Ọ", "Ǫ", "U", "Ú", "A", "E", "O", "Á",
+             "W", "J", "Í", "I", "Ī", "Ę", "Ẹ", "A", "Ọ", "Ǫ", "U", "Ú", "A", "E", "O", "Á",
              ],
 
         #Consonnnes sourdes

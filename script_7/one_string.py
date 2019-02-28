@@ -3,12 +3,12 @@ import collections
 
 def read_one_string_file():
 
-    liste = open('liste.txt', 'w+')
+    liste = open('liste_Mariale.txt', 'w+')
 
     #Tentative d'ouverture du fichier
     try:
         #Ouvre et lit le fichier texte
-        with open('text_inter.txt', 'r') as file:
+        with open('text_inter_Mariale.txt', 'r') as file:
 
             #Suppression de la ponctuation et des retours à la ligne
             for line in file:

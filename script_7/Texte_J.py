@@ -3,12 +3,12 @@ import collections
 
 def read_file():
 
-    x_file = open('text_inter.txt', 'w+')
+    x_file = open('text_inter_Mariale.txt', 'w+')
 
     #Tentative d'ouverture du fichier
     try:
         #Ouvre et lit le fichier texte
-        with open('Texte_J.txt', 'r') as file:
+        with open('Mariale_1.txt', 'r') as file:
             numLines = 0
             numWords = 0
             numChars = 0
@@ -17,19 +17,19 @@ def read_file():
             for line in file:
                 # print(line)
 
-                for char in ":;-.,_\n\t":
+                for char in "1234567890''':;-.,_!?\n\t":
                     line = line.replace(char, ' ')
-                    line = line.lower()
 
-                for char in "'":
-                    line = line.replace(char, ' ')
+                # for char in "'":
+                    # line = line.replace(char, ' ')
 
                 # for char in " ":
                     # line = line.replace(char, '\n')
 
-                for char in "1234567890":
-                    line = line.replace(char, '')
+                # for char in "1234567890":
+                    # line = line.replace(char, '')
 
+                line = line.lower()
 
                 x_file.write(line)
 

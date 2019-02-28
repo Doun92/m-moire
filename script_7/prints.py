@@ -16,6 +16,7 @@ print(EvolutionPhonetique.evolution_phonetique("LÁC"))         #lai 1
 print(EvolutionPhonetique.evolution_phonetique("HǪC"))         #o 1
 print(EvolutionPhonetique.evolution_phonetique("PĘR"))         #par 1
 print(EvolutionPhonetique.evolution_phonetique("DỌNC"))    #donc 1
+
 """
 2 SYLLABES
 """
@@ -376,12 +377,13 @@ print(EvolutionPhonetique.evolution_phonetique("FỌLGRE"))    #foudre 2
 print(EvolutionPhonetique.evolution_phonetique("PĘRSCA"))    #pesche 2
 print(EvolutionPhonetique.evolution_phonetique("HÁLSBERG"))    #hausberc 2
 print(EvolutionPhonetique.evolution_phonetique("CỌGNTU"))    #cointe 2
-#Je comprends pas celui-ci
 print(EvolutionPhonetique.evolution_phonetique("SẸNIR"))    #seindre 2
 print(EvolutionPhonetique.evolution_phonetique("MĘLIR"))    #mieudre 2
+
 """
 3 SYLLABES
 """
+print(EvolutionPhonetique.evolution_phonetique("BÚTJRU"))         #burre 3
 print(EvolutionPhonetique.evolution_phonetique("SUÁVE"))        #soef 3
 print(EvolutionPhonetique.evolution_phonetique("AVẸA"))         #aveie
 print(EvolutionPhonetique.evolution_phonetique("ENTĘGRO"))      #entier
@@ -766,6 +768,7 @@ print(EvolutionPhonetique.evolution_phonetique("DÍXERUNT"))    #distrent 3
 print(EvolutionPhonetique.evolution_phonetique("MONSTRÁRE"))    #mostrer 3
 print(EvolutionPhonetique.evolution_phonetique("VẸNURUNT"))    #vindrent 3
 print(EvolutionPhonetique.evolution_phonetique("MǪLERE"))         #mou|dre 3
+
 """
 4 SYLLABES
 """
@@ -891,6 +894,10 @@ print(EvolutionPhonetique.evolution_phonetique("MEDITÁTE"))         #meitie 4
 print(EvolutionPhonetique.evolution_phonetique("BERBCÁRIU"))    #bergier 4
 print(EvolutionPhonetique.evolution_phonetique("GUNDFANỌNE"))    #gonfanon 4
 print(EvolutionPhonetique.evolution_phonetique("PERTSIÁRE"))    #percier 4
+print(EvolutionPhonetique.evolution_phonetique("ADDÚCERE"))         #aduire 4
+print(EvolutionPhonetique.evolution_phonetique("THWÁHLJA"))    #toaille 3
+print(EvolutionPhonetique.evolution_phonetique("CAMBJÁRE"))    #changier 3
+print(EvolutionPhonetique.evolution_phonetique("SERVJÁNTE"))    #serjant 3
 """
 5 SYLLABES
 """
@@ -935,6 +942,7 @@ print(EvolutionPhonetique.evolution_phonetique("PIIITÁTE"))         #pitie 5
 print(EvolutionPhonetique.evolution_phonetique("BAIILÁRE"))         #baillier 5
 print(EvolutionPhonetique.evolution_phonetique("CORRPTIÁRE"))    #corcier 5
 print(EvolutionPhonetique.evolution_phonetique("INTOXICÁRE"))    #entoschier 5
+
 """
 6 SYLLABES
 """
@@ -943,6 +951,3 @@ print(EvolutionPhonetique.evolution_phonetique("LIBERATIỌNE"))     #livreison 
 print(EvolutionPhonetique.evolution_phonetique("DÍEDOMINICU"))         #diemenche 6
 print(EvolutionPhonetique.evolution_phonetique("AUCTORIDIÁRE"))         #otreiier 6
 print(EvolutionPhonetique.evolution_phonetique("IMPEIIRÁRE"))         #empeirier 6
-"""
-Á continuer ici
-"""
